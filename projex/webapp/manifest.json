@@ -1,0 +1,203 @@
+{
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "com.ennovi.projex",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.3",
+      "toolsId": "028c6f0b-60f0-4108-b560-8b90ccc09524"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZCA_PROJEX_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.145.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ennovi.projex.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.ennovi.projex.view",
+        "controlAggregation": "pages",
+        "controlId": "mainContents",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Home",
+          "pattern": ":?query:",
+          "target": [
+            "TargetHome"
+          ]
+        },
+        {
+          "name": "Projects",
+          "pattern": "projects",
+          "target": [
+            "TargetProjects"
+          ]
+        },
+        {
+          "name": "CreateProjects",
+          "pattern": "projects/create",
+          "target": [
+            "TargetCreateProjects"
+          ]
+        },
+         {
+          "name": "EditProject",
+          "pattern": "projects/edit/{projectID}",
+          "target": [
+            "TargetEditProject"
+          ]
+        },
+        {
+          "name": "Milestones",
+          "pattern": "milestones",
+          "target": [
+            "TargetMilestones"
+          ]
+        },
+        {
+          "name": "CreateMilestone",
+          "pattern": "milestones/create",
+          "target": [
+            "TargetCreateMilestone"
+          ]
+        },
+        {
+          "name": "Tasks",
+          "pattern": "tasks",
+          "target": [
+            "TargetTasks"
+          ]
+        },
+        {
+          "name": "CreateTask",
+          "pattern": "tasks/create",
+          "target": [
+            "TargetCreateTask"
+          ]
+        },
+        {
+          "name": "TimeLogs",
+          "pattern": "timelogs",
+          "target": [
+            "TargetTimelogs"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetHome": {
+          "viewType": "XML",
+          "viewId": "Home",
+          "viewName": "Home"
+        },
+        "TargetProjects": {
+          "viewType": "XML",
+          "viewId": "Projects",
+          "viewName": "Projects"
+        },
+        "TargetCreateProjects": {
+          "viewType": "XML",
+          "viewId": "CreateProject",
+          "viewName": "CreateProject"
+        },
+         "TargetEditProject": {
+          "viewId": "editProject",
+          "viewName": "EditProject"
+        }, 
+        "TargetMilestones": {
+          "viewId": "milestones",
+          "viewName": "Milestones"
+        },
+        "TargetCreateMilestone": {
+          "viewId": "createmilestone",
+          "viewName": "CreateMilestone"
+        },
+        "TargetTasks": {
+          "viewId": "tasks",
+          "viewName": "Tasks"
+        },
+        "TargetCreateTask": {
+          "viewId": "createtask",
+          "viewName": "CreateTask"
+        },
+        "TargetTimelogs": {
+          "viewId": "timelogs",
+          "viewName": "Timelogs"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ennovi.projex.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

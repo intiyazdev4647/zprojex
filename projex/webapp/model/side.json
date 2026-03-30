@@ -1,0 +1,41 @@
+{
+	"selectedKey": "",
+	"appTitle": "Home",
+
+	"navigation": [
+		{
+			"titleI18nKey": "Home",
+			"icon": "sap-icon://home",
+			"expanded": true,
+			"key": "",
+			"items": []
+		},
+		{
+			"titleI18nKey": "Projects",
+			"icon": "sap-icon://activity-2",
+			"expanded": true,
+			"key": "projects",
+			"items": []
+		},
+		{
+			"titleI18nKey": "Milestones",
+			"icon": "sap-icon://flag-2",
+			"expanded": true,
+			"key": "milestones",
+			"items": []
+		},
+		{
+			"titleI18nKey": "Tasks",
+			"icon": "sap-icon://task",
+			"expanded": true,
+			"key": "tasks",
+			"items": []
+		},{
+			"titleI18nKey": "TimeLogs",
+			"icon": "sap-icon://time-entry-request",
+			"expanded": true,
+			"key": "timeLogs",
+			"items": []
+		}
+	]
+}

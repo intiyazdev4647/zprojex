@@ -1,0 +1,122 @@
+<mvc:View controllerName="com.ennovi.projex.controller.Milestones"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true">
+    
+    <Page title="Milestones" showHeader="false" class="sapUiTinyMarginTop">
+        <content>
+             <Panel >
+            <t:Table
+            id="milestonesTable" enableColumnReordering="true"  rows="{projectsModel>/milestones}"
+            fixedColumnCount="1" width="100%"  noData="No Records Found"
+            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
+            selectionBehavior="RowOnly">
+            <t:rowMode>
+                <rowmodes:Fixed rowCount="16"></rowmodes:Fixed>
+            </t:rowMode>
+            <!-- HEADER TOOLBAR -->
+            <t:extension>
+                <OverflowToolbar>
+
+                    <Title text="All Milestones"/>
+                    <ToolbarSpacer/>
+
+                    <SearchField
+                        width="250px"
+                        search=".onSearch"
+                        placeholder="Search milestone..."
+                        class="sapUiSmallMarginEnd"/>
+
+                    <Button
+                        text="Add Milestone"
+                        icon="sap-icon://add"
+                        type="Emphasized"
+                        press=".onAddMilestone"
+                        class="sapUiTinyMarginEnd"/>
+
+                    <Button
+                        icon="sap-icon://filter"
+                        press=".onFilterPress"
+                        class="sapUiTinyMarginEnd"/>
+
+                    <Button
+                        text="Clear"
+                        press=".onClear"/>
+
+                </OverflowToolbar>
+            </t:extension>
+
+            <!-- ALL COLUMNS -->
+            <t:columns>
+
+
+                <!-- Name -->
+                <t:Column width="200px">
+                    <Label text="Name"/>
+                    <t:template>
+                        <Text text="{projectsModel>Name}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Completion -->
+                <t:Column >
+                    <Label text="Completion %"/>
+                    <t:template>
+                        <Text text="{projectsModel>Completion}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Status -->
+                <t:Column >
+                    <Label text="Status"/>
+                    <t:template>
+                        <Text text="{projectsModel>Status}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Owner -->
+                <t:Column >
+                    <Label text="Owner"/>
+                    <t:template>
+                        <Text text="{projectsModel>Owner}"/>
+                    </t:template>
+                </t:Column>
+
+                
+
+                <!-- Start Date -->
+                <t:Column >
+                    <Label text="Start Date"/>
+                    <t:template>
+                        <!-- <DatePicker
+                            value="{startdate}"
+                            displayFormat="dd-MM-yyyy"/> -->
+                        <Text text="{path:'projectsModel>StartDate', type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    pattern: 'dd-MM-yyyy'
+                                }}"></Text>
+                    </t:template>
+                </t:Column>
+
+                <!-- End Date -->
+                <t:Column >
+                    <Label text="End Date"/>
+                    <t:template>
+                        <!-- <DatePicker
+                            value="{enddate}"
+                            displayFormat="dd-MM-yyyy"/> -->
+                         <Text text="{path:'projectsModel>EndDate', type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    pattern: 'dd-MM-yyyy'
+                                }}"></Text>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+        </Panel>
+        </content>
+    </Page>
+    
+</mvc:View>

@@ -1,0 +1,40 @@
+<mvc:View xmlns:f="sap.f" controllerName="com.ennovi.projex.controller.App"
+     xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" height="100%" >
+    <tnt:ToolPage id="app" sideExpanded="true"  class="sapUiDemoToolPage">
+	<tnt:header>
+		<tnt:ToolHeader class="myToolHead">
+			<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress" tooltip="Collapse">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            <!-- <Image src="Images/ennovi-logo.png" 
+                    height="16px" 
+                    class="sapUiTinyMarginLeft"/> -->
+			<!-- <ToolbarSpacer/> -->
+			<Title text="Home" id="pageTitle" class="sapUiSmallMarginBegin"  level="H2"/>
+            <ToolbarSpacer/>
+			<Title text="{i18n>appTitle}"  level="H2"/>
+			<ToolbarSpacer />
+            <Avatar id="userAvatar"
+					displayShape="Circle"
+					displaySize="XS"
+					src="Images/msd.jpg" press="onUserPress"></Avatar>
+		</tnt:ToolHeader>
+	</tnt:header>
+	<tnt:sideContent>
+		<tnt:SideNavigation class="myToolHead" id="sideNav" expanded="false" selectedKey="{side>/selectedKey}" itemSelect="onMenuSelect">
+			<tnt:NavigationList >
+					<tnt:NavigationListItem text="Home" icon="sap-icon://home" key="home" ></tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Projects" icon="sap-icon://activity-2" key="projects" ></tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Milestones" icon="sap-icon://flag-2" key="milestones" ></tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Tasks" icon="sap-icon://task" key="tasks" ></tnt:NavigationListItem>
+					<tnt:NavigationListItem text="TimeLogs" icon="sap-icon://time-entry-request" key="timelogs" ></tnt:NavigationListItem>
+			</tnt:NavigationList>
+		</tnt:SideNavigation>
+	</tnt:sideContent>
+	<tnt:mainContents>
+		<App id="mainContents"/>
+	</tnt:mainContents>
+</tnt:ToolPage>
+</mvc:View>

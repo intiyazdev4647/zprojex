@@ -1,0 +1,153 @@
+<mvc:View controllerName="com.ennovi.projex.controller.Timelogs"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true">
+    
+    <Page title="Timelogs" showHeader="false" class="sapUiTinyMarginTop">
+        <content>
+             <Panel >
+            <t:Table
+            id="timelogsTable" enableColumnReordering="true"  rows="{projectsModel>/timelogs}"
+            fixedColumnCount="1" width="100%"  noData="No Records Found"
+            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
+            selectionBehavior="RowOnly">
+            <t:rowMode>
+                <rowmodes:Fixed rowCount="16"></rowmodes:Fixed>
+            </t:rowMode>
+            <!-- HEADER TOOLBAR -->
+            <t:extension>
+                <OverflowToolbar>
+
+                    <Title text="All Time Logs"/>
+                    <ToolbarSpacer/>
+
+                    <SearchField
+                        width="250px"
+                        search=".onSearch"
+                        placeholder="Search timelog..."
+                        class="sapUiSmallMarginEnd"/>
+
+                    <Button
+                        text="Add Time Log"
+                        icon="sap-icon://add"
+                        type="Emphasized"
+                        press=".onAddTimeLog"
+                        class="sapUiTinyMarginEnd"/>
+
+                    <Button
+                        icon="sap-icon://filter"
+                        press=".onFilterPress"
+                        class="sapUiTinyMarginEnd"/>
+
+                    <Button
+                        text="Clear"
+                        press=".onClear"/>
+
+                </OverflowToolbar>
+            </t:extension>
+
+            <!-- ALL COLUMNS -->
+            <t:columns>
+                <!-- ID -->
+                <t:Column width="100px">
+                    <Label text="ID"/>
+                    <t:template>
+                        <Link text="{projectsModel>ID}"/>
+                    </t:template>
+                </t:Column>
+                <!-- Log Title -->
+                <t:Column width="150px">
+                    <Label text="Log Title"/>
+                    <t:template>
+                        <Link text="{projectsModel>logTitle}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Project -->
+                <t:Column >
+                    <Label text="Project"/>
+                    <t:template>
+                        <Text text="{projectsModel>Project}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Daily Log Hours -->
+                <t:Column >
+                    <Label text="Daily Log Hours"/>
+                    <t:template>
+                        <Text text="{projectsModel>dailyLogHours}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- User -->
+                <t:Column >
+                    <Label text="User"/>
+                    <t:template>
+                        <Text text="{projectsModel>user}"/>
+                    </t:template>
+                </t:Column>
+
+                <!-- Notes -->
+                <t:Column >
+                    <Label text="Notes"/>
+                    <t:template>
+                        <TextArea value="{projectsModel>notes}"/>
+                    </t:template>
+                </t:Column>
+
+                
+
+                <!-- Date Time -->
+                <t:Column >
+                    <Label text="Date Time"/>
+                    <t:template>
+                        <!-- <DatePicker
+                            value="{startdate}"
+                            displayFormat="dd-MM-yyyy"/> -->
+                        <Text text="{projectsModel>dateTime}"></Text>
+                    </t:template>
+                </t:Column>
+
+                <!-- Created Time -->
+                <t:Column >
+                    <Label text="Created Time"/>
+                    <t:template>
+                        <!-- <DatePicker
+                            value="{enddate}"
+                            displayFormat="dd-MM-yyyy"/> -->
+                         <Text text="{projectsModel>createdTime}"></Text>
+                    </t:template>
+                </t:Column>
+                <!-- Last modified Time -->
+                <t:Column >
+                    <Label text="Last modified Time"/>
+                    <t:template>
+                        <!-- <DatePicker
+                            value="{enddate}"
+                            displayFormat="dd-MM-yyyy"/> -->
+                         <Text text="{projectsModel>lastModifiedTime}"></Text>
+                    </t:template>
+                </t:Column>
+                <!-- Plant -->
+                <t:Column >
+                    <Label text="Plant"/>
+                    <t:template>
+                         <Text text="{projectsModel>plant}"></Text>
+                    </t:template>
+                </t:Column>
+                <!-- Billing Type -->
+                <t:Column >
+                    <Label text="Billing Type"/>
+                    <t:template>
+                         <Text text="{projectsModel>billingType}"></Text>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+        </Panel>
+        </content>
+    </Page>
+    
+</mvc:View>
