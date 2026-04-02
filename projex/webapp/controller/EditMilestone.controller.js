@@ -9,29 +9,29 @@ sap.ui.define([
     return Controller.extend("com.ennovi.projex.controller.EditMilestone", {
 
         onInit: function () {        
-           this.getOwnerComponent().getRouter().getRoute("EditProject")
+           this.getOwnerComponent().getRouter().getRoute("EditMilestone")
            .attachPatternMatched(this._onRouteMatched, this);
         },
         _onRouteMatched : function (oEvent) {
             // Clear input fields when the route is matched
-           let projectID = oEvent.getParameter("arguments").projectID;
+        //    this.getView().busy(true);
+           let milestoneName = oEvent.getParameter("arguments").milestoneName;
            let that=this;
            const oModel  = this.getView().getModel();
 
-              oModel.read("/MilestonesSet('"+projectID+"')", {
+              oModel.read("/MilestonesSet('"+milestoneName+"')", {
                 success: function (oData) {
                     if (oData) {
+                        // that.getView().busy(false);
                         // created a jsonmodel
-                        var oJsonModel = new JSONModel({
-                            "project" : {}
-                        });
-                        oJsonModel.setProperty("/project",oData);
+                        var oJsonModel = new JSONModel(oData);
                         that.getView().setModel(oJsonModel, "projectModel");
-                         console.log("Projects Data:", oData.results);
+                        console.log("Milestones Data:", oData);
                     }
                 },
                 error: function (oError) {
-                    console.error("Error while reading Projects:", oError);
+                    // that.getView().busy(false);
+                    console.error("Error while reading Milestones:", oError);
                 }
             });
 

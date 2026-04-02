@@ -4,7 +4,7 @@
     xmlns:core="sap.ui.core"
     displayBlock="true">
     
-    <Page title="Create Milestone" showHeader="false" >
+    <Page title="Create Project" showHeader="true" >
         <content>
            <Panel >
             <form:SimpleForm editable="true">
@@ -16,7 +16,7 @@
                     <Label text="Project Description" required="true"></Label>
                     <Input id="inpProjDesc" width="50%"></Input>
                     <Label text="Start Date" required="true"></Label>
-                    <DatePicker id="startD" width="50%" value="" displayFormat="yyyy/MM/dd" valueFormat="yyyy-MM-dd" ></DatePicker>
+                    <DatePicker id="startD" width="50%" value="" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="End Date"></Label>
                     <DatePicker id="endD" width="50%" value="" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="Department" required="true"></Label>
@@ -38,7 +38,7 @@
         <footer>
             <Toolbar >
                 <ToolbarSpacer />
-                <Button text="Create" type="Emphasized" press="onCreateMilestone"/>
+                <Button text="Create" type="Emphasized" press="onCreateProject"/>
                 <Button text="Cancel" press="onCancel"/>
             </Toolbar>
         </footer>

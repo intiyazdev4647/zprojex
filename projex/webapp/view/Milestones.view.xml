@@ -56,7 +56,7 @@
                 <t:Column width="200px">
                     <Label text="Name"/>
                     <t:template>
-                        <Text text="{projectsModel>Name}"/>
+                        <Link text="{projectsModel>Name}" press="onMilestonePress"/>
                     </t:template>
                 </t:Column>
 

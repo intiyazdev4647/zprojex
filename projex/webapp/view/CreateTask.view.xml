@@ -5,7 +5,7 @@
     xmlns:form="sap.ui.layout.form"
     displayBlock="true">
 
-<Page title="Tasks" showHeader="false">
+<Page title="Create Task" showHeader="true">
 
     <content>
 

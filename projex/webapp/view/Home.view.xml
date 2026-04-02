@@ -26,7 +26,7 @@
 
                                     <StandardListItem
                                         title="{projectsModel>ProjectName}" description="{projectsModel>Description}"
-                                        icon="sap-icon://activity-2" />
+                                        icon="sap-icon://activity-2" press="onProjectPress"/>
 
                                 </List>
 
@@ -52,7 +52,7 @@
                                     <StandardListItem
                                         title="{projectsModel>Name}"
                                         description="{projectsModel>Project}"
-                                        icon="sap-icon://flag-2" />
+                                        icon="sap-icon://flag-2" press="onMilestonePress"/>
                                 </List>
 
                             </ScrollContainer>
@@ -77,7 +77,7 @@
                                     title="{projectsModel>title}"
                                     description="{projectsModel>project}"
                                     info="{projectsModel>priority}"
-                                    icon="sap-icon://task" />
+                                    icon="sap-icon://task" press="onTaskPress" />
                                 </List>
 
                             </ScrollContainer>
@@ -103,7 +103,7 @@
                                             title="{projectsModel>title}"
                                             description="{projectsModel>project}"
                                             info="{projectsModel>daysOverdue} days overdue"
-                                            icon="sap-icon://alert" />
+                                            icon="sap-icon://alert" press="onOverdueItemPress" />
 
                                 </List>
 

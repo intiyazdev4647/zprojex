@@ -55,7 +55,7 @@
                 <t:Column width="120px">
                     <Label text="ID"/>
                     <t:template>
-                        <Link text="{projectsModel>ProjectID}"/>
+                        <Link text="{projectsModel>ProjectID}" press="onProjectLinkPress"/>
                     </t:template>
                 </t:Column>
 
@@ -63,7 +63,7 @@
                 <t:Column width="200px">
                     <Label text="Name"/>
                     <t:template>
-                        <Link text="{projectsModel>ProjectName}"/>
+                        <Link text="{projectsModel>ProjectName}" press="onProjectLinkPress"/>
                     </t:template>
                 </t:Column>
 

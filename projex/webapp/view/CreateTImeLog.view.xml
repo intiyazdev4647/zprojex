@@ -5,7 +5,7 @@
     xmlns:f="sap.ui.layout.form"
     displayBlock="true">
     
-    <Page title="CreateTimelog" showHeader="false" class="sapUiTinyMarginTop">
+    <Page title="Create Timelog" showHeader="true" class="sapUiTinyMarginTop">
         <content>
              
         </content>
