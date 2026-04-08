@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <ViewSettingsDialog
+        id="taskSettingsDialog"
+        confirm="handleConfirm"
+        cancel="handleCancel" 
+        resetFilters="handleResetFilters">
+        <filterItems>
+
+            <ViewSettingsCustomItem
+                id="idProjectItem"
+                text="Project"
+                key="myProject">
+                <customControl>
+                    <MultiComboBox 
+                        id="projectFilter"
+                        placeholder="Select Project"
+                        items="{filterModel>/project}">
+                        
+                        <core:Item 
+                            key="{filterModel>Project}" 
+                            text="{filterModel>Project}"/>
+                    </MultiComboBox>
+                </customControl>
+            </ViewSettingsCustomItem>
+
+            <ViewSettingsCustomItem
+                id="idOwner"
+                text="Owner"
+                key="myOwner">
+                <customControl>
+                    <MultiComboBox 
+                        id="ownerFil"
+                        placeholder="Select Owner"
+                        items="{filterModel>/owner}">
+                        
+                        <core:Item 
+                            key="{filterModel>Owner}" 
+                            text="{filterModel>Owner}"/>
+                    </MultiComboBox>
+                </customControl>
+            </ViewSettingsCustomItem>
+
+        </filterItems>
+    </ViewSettingsDialog>
+
+</core:FragmentDefinition>

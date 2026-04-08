@@ -15,11 +15,14 @@
             <Panel headerText="Task Details" expandable="true" expanded="true">
                 <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
                     <form:content>
-                        <Label text="Project Name" required="true"/>
-                        <Input width="50%" liveChange="onFieldLiveChange" id="inpProjectName"/>
+                        <Label text="Task ID" required="true"/>
+                        <Input width="50%" change="taskIdChange" id="inpTaskId"/>
 
                         <Label text="Task Name" required="true"/>
                         <Input width="50%" liveChange="onFieldLiveChange" id="inpTaskName"/>
+
+                        <Label text="Project Name" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpProjectName"/>
 
                         <Label text="Description" required="true"/>
                         <Input width="50%" liveChange="onFieldLiveChange" id="inpDescription"/>

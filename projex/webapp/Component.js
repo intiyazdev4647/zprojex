@@ -53,11 +53,11 @@ sap.ui.define(
             oODataModel.read("/RolesSet", {
               filters: aFilters,
               success: function(oData) {
-                oJSONModel.setData(oData.results);
+                oJSONModel.setData(oData);
 
                 that.setModel(oJSONModel, "rolesModel");
 
-                console.log("Role Data Loaded:", oData.results);
+                console.log("Role Data Loaded:", oData);
               },
               error: function(oError) {
                 console.error("Error loading data", oError);

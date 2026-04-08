@@ -9,6 +9,8 @@
            <Panel >
             <form:SimpleForm editable="true">
                 <form:content>
+                    <Label text="Project ID" required="true"></Label>
+                    <Input  width="50%" editable="false" value="{projectModel>/ProjectID}"></Input>
                     <Label text="Project Name" required="true"></Label>
                     <Input  width="50%" editable="false" value="{projectModel>/ProjectName}"></Input>
                     <Label text="Project Owner" required="true"></Label>

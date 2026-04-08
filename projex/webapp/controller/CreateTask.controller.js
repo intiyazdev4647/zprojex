@@ -136,6 +136,22 @@ sap.ui.define(
         if (sValue) {
           oControl.setValueState("None");
         }
+      },
+      taskIdChange: function(oEvent) {
+        var oInput = oEvent.getSource();
+        var sValue = oInput.getValue();
+
+        // Simple validation: Task ID must be alphanumeric and 5-10 characters and no spaces in between
+        var oRegExp = /^[a-zA-Z0-9]{5,10}$/;
+
+        if (!oRegExp.test(sValue)) {
+          oInput.setValueState("Error");
+          oInput.setValueStateText(
+            "Task ID must be 5-10 characters, alphanumeric, and no spaces"
+          );
+        } else {
+          oInput.setValueState("None");
+        }
       }
     });
   }

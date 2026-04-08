@@ -35,9 +35,15 @@ sap.ui.define(
       loadMilestonesData: function() {
         var oModel = this.getOwnerComponent().getModel();
         var that = this;
+        this.getView().setBusy(true);
+        var oTimeout = setTimeout(function() {
+          that.getView().setBusy(false);
+        }, 20000);
         oModel.read("/MilestonesSet", {
           success: function(oData) {
             if (oData && oData.results) {
+              clearTimeout(oTimeout);
+              that.getView().setBusy(false);
               var oJsonModel = new JSONModel({
                 milestones: []
               });
@@ -50,6 +56,8 @@ sap.ui.define(
             }
           },
           error: function(oError) {
+            clearTimeout(oTimeout);
+            that.getView().setBusy(false);
             console.error("Error while reading Milestones:", oError);
           }
         });

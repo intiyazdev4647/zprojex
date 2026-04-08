@@ -1,12 +1,12 @@
 <mvc:View
-    controllerName="com.ennovi.projex.controller.EditTask"
+    controllerName="com.ennovi.projex.controller.DisplayTask"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:form="sap.ui.layout.form"
     displayBlock="true"
-    models="{editTaskModel: 'editTaskModel'}">
+    >
 
-<Page title="Edit Task" showHeader="true">
+<Page title="Display Task" showNavButton="true" navButtonPress="onBack" navButtonTooltip="Back" showHeader="true">
 
     <content>
 
@@ -18,13 +18,13 @@
                     <form:content>
 
                         <Label text="Project Name" required="true"/>
-                        <Input value="{editTaskModel>/ProjectID}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/ProjectID}" width="50%"/>
 
                         <Label text="Task Name" required="true"/>
-                        <Input value="{editTaskModel>/TaskName}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TaskName}" width="50%"/>
 
                         <Label text="Description" required="true"/>
-                        <Input value="{editTaskModel>/Description}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Description}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -37,31 +37,31 @@
                     <form:content>
 
                         <Label text="Owner" required="true"/>
-                        <Input value="{editTaskModel>/Owner}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Owner}" width="50%"/>
 
                         <Label text="Current Owner" required="true"/>
-                        <Input value="{editTaskModel>/CurrentOwner}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/CurrentOwner}" width="50%"/>
 
                         <Label text="CR Nature" required="true"/>
-                        <Input value="{editTaskModel>/CRNature}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/CRNature}" width="50%"/>
 
                         <Label text="Change Type" required="true"/>
-                        <Input value="{editTaskModel>/ChangeType}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/ChangeType}" width="50%"/>
 
                         <Label text="SolMan CR Id"/>
-                        <Input value="{editTaskModel>/SolmanCRID}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/SolmanCRID}" width="50%"/>
 
                         <Label text="Start Date"/>
-                        <DatePicker dateValue="{editTaskModel>/StartDate}" width="50%"/>
+                        <DatePicker editable="false" dateValue="{displayTaskModel>/StartDate}" width="50%"/>
 
                         <Label text="Due Date"/>
-                        <DatePicker dateValue="{editTaskModel>/EndDate}" width="50%"/>
+                        <DatePicker editable="false" dateValue="{displayTaskModel>/EndDate}" width="50%"/>
 
                         <Label text="HelpDesk Ticket Number"/>
-                        <Input value="{editTaskModel>/HDTicketNo}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/HDTicketNo}" width="50%"/>
 
                         <Label text="Sprint"/>
-                        <Input value="{editTaskModel>/Sprint}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Sprint}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -74,31 +74,31 @@
                     <form:content>
 
                         <Label text="Functional Owner"/>
-                        <Input value="{editTaskModel>/FuncOwner}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/FuncOwner}" width="50%"/>
 
                         <Label text="SAP CoE Group"/>
-                        <Input value="{editTaskModel>/SAPCOEGrp}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/SAPCOEGrp}" width="50%"/>
 
                         <Label text="Priority"/>
-                        <Input value="{editTaskModel>/Priority}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Priority}" width="50%"/>
 
                         <Label text="Module"/>
-                        <Input value="{editTaskModel>/CRModule}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/CRModule}" width="50%"/>
 
                         <Label text="Impact" required="true"/>
-                        <Input value="{editTaskModel>/Impact}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Impact}" width="50%"/>
 
                         <Label text="Functional Spec URL"/>
-                        <Input value="{editTaskModel>/FSDURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/FSDURL}" width="50%"/>
 
                         <Label text="Functional Test Script"/>
-                        <Input value="{editTaskModel>/FTURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/FTURL}" width="50%"/>
 
                         <Label text="Config Document"/>
-                        <Input value="{editTaskModel>/ConfigDocURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/ConfigDocURL}" width="50%"/>
 
                         <Label text="Additional Documents"/>
-                        <Input value="{editTaskModel>/AddDocURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/AddDocURL}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -111,22 +111,22 @@
                     <form:content>
 
                         <Label text="Tech Assessor"/>
-                        <Input value="{editTaskModel>/TechAssessor}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TechAssessor}" width="50%"/>
 
                         <Label text="Associated Dev Duration (Hrs)"/>
-                        <Input value="{editTaskModel>/TechDuration}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TechDuration}" width="50%"/>
 
                         <Label text="Technical Developer"/>
-                        <Input value="{editTaskModel>/TechDeveloper}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TechDeveloper}" width="50%"/>
 
                         <Label text="Technical Complexity"/>
-                        <Input value="{editTaskModel>/TechComplexity}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TechComplexity}" width="50%"/>
 
                         <Label text="Tech Assessment Start"/>
-                        <DatePicker dateValue="{editTaskModel>/TechStartDate}" width="50%"/>
+                        <DatePicker editable="false" dateValue="{displayTaskModel>/TechStartDate}" width="50%"/>
 
                         <Label text="Technical Design Doc"/>
-                        <Input value="{editTaskModel>/TSDURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/TSDURL}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -139,19 +139,19 @@
                     <form:content>
 
                         <Label text="Requestor Email"/>
-                        <Input value="{editTaskModel>/RqstrEmail}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/RqstrEmail}" width="50%"/>
 
                         <Label text="Company Site"/>
-                        <Input value="{editTaskModel>/Site}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Site}" width="50%"/>
 
                         <Label text="Position / Role"/>
-                        <Input value="{editTaskModel>/RqstrPosition}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/RqstrPosition}" width="50%"/>
 
                         <Label text="Region" required="true"/>
-                        <Input value="{editTaskModel>/Region}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/Region}" width="50%"/>
 
                         <Label text="Contact Number"/>
-                        <Input value="{editTaskModel>/MobilePhone}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/MobilePhone}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -164,16 +164,16 @@
                     <form:content>
 
                         <Label text="Description of Problem (As-Is)" required="true"/>
-                        <TextArea value="{editTaskModel>/AsIs}" width="50%"/>
+                        <TextArea editable="false" value="{displayTaskModel>/AsIs}" width="50%"/>
 
                         <Label text="Description of To-Be State"/>
-                        <TextArea value="{editTaskModel>/ToBe}" width="50%"/>
+                        <TextArea editable="false" value="{displayTaskModel>/ToBe}" width="50%"/>
 
                         <Label text="BRD SharePoint Link"/>
-                        <Input value="{editTaskModel>/BRDSPURL}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/BRDSPURL}" width="50%"/>
 
                         <Label text="Priority to Implement"/>
-                        <Input value="{editTaskModel>/PriorityToImpl}" width="50%"/>
+                        <Input editable="false" value="{displayTaskModel>/PriorityToImpl}" width="50%"/>
 
                     </form:content>
                 </form:SimpleForm>
@@ -182,23 +182,6 @@
         </VBox>
 
     </content>
-
-
-    <!-- ================= Footer ================= -->
-    <footer>
-        <Toolbar>
-            <ToolbarSpacer/>
-
-            <Button 
-                text="Update" 
-                type="Emphasized" 
-                press="onUpdateTask"/>
-
-            <Button 
-                text="Cancel" 
-                press="onCancel"/>
-        </Toolbar>
-    </footer>
 
 </Page>
 

@@ -113,6 +113,14 @@ sap.ui.define(
         var sMilestoneName = oMilestone.Name;
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter.navTo("DisplayMilestone", { milestoneName: sMilestoneName });
+      },
+      onTaskPress: function(oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oCtx = oItem.getBindingContext("projectsModel");
+        var oTask = oCtx.getObject();
+        var sTaskId = oTask.TaskID;
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("DisplayTask", { taskId: sTaskId });
       }
     });
   }

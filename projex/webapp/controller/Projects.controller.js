@@ -36,7 +36,7 @@ sap.ui.define(
         var oModel = this.getOwnerComponent().getModel();
         var that = this;
         var oTimeout = setTimeout(function() {
-          oList.setBusy(false);
+          that.getView().setBusy(false);
         }, 20000);
         oModel.read("/ProjectsSet", {
           success: function(oData) {
@@ -92,26 +92,6 @@ sap.ui.define(
           error: function() {
             clearTimeout(oTimeout);
             that.getView().setBusy(false);
-          }
-        });
-      },
-      loadRolesData: function() {
-        var oModel = this.getOwnerComponent().getModel();
-        var that = this;
-        oModel.read("/RolesSet", {
-          urlParameters: {
-            $select: "Projects"
-          },
-          success: function(oData) {
-            if (oData && oData.results) {
-              var oJsonModel = that.getView().getModel("projectsModel");
-              oJsonModel.setProperty("/roles", oData.results);
-              that.getView().setModel(oJsonModel, "projectsModel");
-              console.log("Roles Data:", oData.results);
-            }
-          },
-          error: function(oError) {
-            console.error("Error while reading Roles:", oError);
           }
         });
       },

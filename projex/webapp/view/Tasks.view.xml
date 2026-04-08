@@ -5,14 +5,13 @@
     xmlns:f="sap.ui.layout.form"
     displayBlock="true">
     
-    <Page title="Milestones" showHeader="false" class="sapUiTinyMarginTop">
+    <Page title="Tasks" showHeader="false" class="sapUiTinyMarginTop">
         <content>
              <Panel >
             <t:Table
                 id="tasksTable" enableColumnReordering="true"  rows="{projectsModel>/tasks}"
                 fixedColumnCount="1" width="100%"  noData="No Records Found"
-                selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-                selectionBehavior="RowOnly" visibleRowCount="16" visibleRowCountMode="Fixed">
+                selectionMode="Single" alternateRowColors="true" rowActionCount="10"  visibleRowCount="16" visibleRowCountMode="Fixed">
            
             <!-- HEADER TOOLBAR -->
             <t:extension>
@@ -96,7 +95,7 @@
                         <!-- <DatePicker
                             value="{startdate}"
                             displayFormat="dd-MM-yyyy"/> -->
-                        <Text text="{ path: 'projectsModel>StartDate',
+                        <Text text="{ path: 'projectsModel>TechStartDate',
                                 type: 'sap.ui.model.type.Date',
                                 formatOptions: {
                                     pattern: 'dd-MM-yyyy'
@@ -112,7 +111,7 @@
                         <!-- <DatePicker
                             value="{enddate}"
                             displayFormat="dd-MM-yyyy"/> -->
-                         <Text text="{ path: 'projectsModel>DueDate',
+                         <Text text="{ path: 'projectsModel>EndDate',
                                 type: 'sap.ui.model.type.Date',
                                 formatOptions: {
                                     pattern: 'dd-MM-yyyy'
@@ -125,7 +124,7 @@
                 <t:Column >
                     <Label text="Duration"/>
                     <t:template>
-                        <Text text="{projectsModel>Duration}"/>
+                        <Text text="{projectsModel>TechDuration}"/>
                     </t:template>
                 </t:Column>
 
@@ -133,7 +132,7 @@
                 <t:Column >
                     <Label text="Complexity"/>
                     <t:template>
-                        <Text text="{projectsModel>Complexity}"/>
+                        <Text text="{projectsModel>TechComplexity}"/>
                     </t:template>
                 </t:Column>
                 
@@ -141,7 +140,12 @@
                 <t:Column >
                     <Label text="Created By"/>
                     <t:template>
-                        <Text text="{projectsModel>CreatedBy}"/>
+                       <Text text="{ path: 'projectsModel>StartDate',
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    pattern: 'dd-MM-yyyy'
+                                }
+                            }"></Text>
                     </t:template>
                 </t:Column>
 

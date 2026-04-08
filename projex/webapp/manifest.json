@@ -185,6 +185,13 @@
           ]
         },
         {
+          "name": "DisplayTask",
+          "pattern": "tasks/display/{taskId}",
+          "target": [
+            "TargetDisplayTask"
+          ]
+        },
+        {
           "name": "TimeLogs",
           "pattern": "timelogs",
           "target": [
@@ -243,6 +250,10 @@
         "TargetEditTask": {
           "viewId": "edittask",
           "viewName": "EditTask"
+        },
+        "TargetDisplayTask": {
+          "viewId": "displaytask",
+          "viewName": "DisplayTask"
         },
         "TargetTimelogs": {
           "viewId": "timelogs",

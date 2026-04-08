@@ -71,13 +71,13 @@
 
                                 <List id="tasksList"
                                     items="{projectsModel>/tasks}"
-                                    mode="None"
+                                   itemPress="onTaskPress"
                                     showSeparators="All">
                                 <StandardListItem
                                     title="{projectsModel>TaskName}"
                                     description="{projectsModel>Description}"
                                     info="Priority - {projectsModel>Priority}"
-                                    icon="sap-icon://task" press="onTaskPress" />
+                                    icon="sap-icon://task" type="Navigation" />
                                 </List>
 
                             </ScrollContainer>

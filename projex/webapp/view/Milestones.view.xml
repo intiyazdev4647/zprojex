@@ -68,7 +68,8 @@
                 <t:Column >
                     <Label text="Status"/>
                     <t:template>
-                        <Text text="{projectsModel>Status}"/>
+                        <!-- <Text text="{projectsModel>Status}"/> -->
+                        <ObjectStatus text="{projectsModel>Status}" state="{=${}}"></ObjectStatus>
                     </t:template>
                 </t:Column>
 
