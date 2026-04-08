@@ -1,5 +1,5 @@
 <mvc:View controllerName="com.ennovi.projex.controller.Milestones"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" 
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
@@ -9,13 +9,9 @@
         <content>
              <Panel >
             <t:Table
-            id="milestonesTable" enableColumnReordering="true"  rows="{projectsModel>/milestones}"
-            fixedColumnCount="1" width="100%"  noData="No Records Found"
-            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-            selectionBehavior="RowOnly">
-            <t:rowMode>
-                <rowmodes:Fixed rowCount="16"></rowmodes:Fixed>
-            </t:rowMode>
+            id="milestonesTable"  rows="{projectsModel>/milestones}"
+            fixedColumnCount="2" width="100%" selectionMode="Single" ariaLabelledBy="title" visibleRowCount="16" visibleRowCountMode="Fixed" alternateRowColors="true">
+            
             <!-- HEADER TOOLBAR -->
             <t:extension>
                 <OverflowToolbar>
@@ -23,11 +19,11 @@
                     <Title text="All Milestones"/>
                     <ToolbarSpacer/>
 
-                    <SearchField
+                    <!-- <SearchField
                         width="250px"
                         search=".onSearch"
                         placeholder="Search milestone..."
-                        class="sapUiSmallMarginEnd"/>
+                        class="sapUiSmallMarginEnd"/> -->
 
                     <Button
                         text="Add Milestone"

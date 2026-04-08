@@ -1,43 +1,49 @@
 <core:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
-	<ViewSettingsDialog
-		id="settingsDialog"
-		confirm="handleConfirm"
-		cancel="handleCancel"
-		resetFilters="handleResetFilters">
-		<filterItems>
-			<ViewSettingsCustomItem
-				id="idStatusItem"
-				text="Status"
-				key="myStatus">
-				<customControl>
-					<MultiComboBox 
-						id="statusFilter" placeholder="Select Status"
-						items="{path: 'projectsModel>/milestones'}"
-						 >	
-						 <items>
-						 	<core:Item key="{projectsModel>Status}" text="{projectsModel>Status}"></core:Item>
-						 </items>
-						 </MultiComboBox>
-						
-				</customControl>
-			</ViewSettingsCustomItem>
-			<ViewSettingsCustomItem
-				id="idOwnerItem"
-				text="Owner"
-				key="myOnwer">
-				<customControl>
-					<MultiComboBox 
-						id="ownerFilter" placeholder="Select Owner"
-						items="{path: 'projectsModel>/milestones'}"
-						 >	
-						 <items>
-						 	<core:Item key="{projectsModel>Owner}" text="{projectsModel>Owner}"></core:Item>
-						 </items>
-						 </MultiComboBox>
-				</customControl>
-			</ViewSettingsCustomItem>
-		</filterItems>
-	</ViewSettingsDialog>
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <ViewSettingsDialog
+        id="settingsDialog"
+        confirm="handleConfirm"
+        cancel="handleCancel" 
+        resetFilters="handleResetFilters">
+        <filterItems>
+
+            <ViewSettingsCustomItem
+                id="idStatusItem"
+                text="Status"
+                key="myStatus">
+                <customControl>
+                    <MultiComboBox 
+                        id="statusFilter"
+                        placeholder="Select Status"
+                        items="{filterModel>/status}">
+                        
+                        <core:Item 
+                            key="{filterModel>Status}" 
+                            text="{filterModel>Status}"/>
+                    </MultiComboBox>
+                </customControl>
+            </ViewSettingsCustomItem>
+
+            <ViewSettingsCustomItem
+                id="idOwnerItem"
+                text="Owner"
+                key="myOwner">
+                <customControl>
+                    <MultiComboBox 
+                        id="ownerFilter"
+                        placeholder="Select Owner"
+                        items="{filterModel>/owner}">
+                        
+                        <core:Item 
+                            key="{filterModel>Owner}" 
+                            text="{filterModel>Owner}"/>
+                    </MultiComboBox>
+                </customControl>
+            </ViewSettingsCustomItem>
+
+        </filterItems>
+    </ViewSettingsDialog>
+
 </core:FragmentDefinition>

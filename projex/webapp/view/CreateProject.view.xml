@@ -9,6 +9,8 @@
            <Panel >
             <form:SimpleForm editable="true">
                 <form:content>
+                    <Label text="Project Id" required="true"></Label>
+                    <Input id="inpProjId" change="projectIdChange" width="50%"></Input>
                     <Label text="Project Name" required="true"></Label>
                     <Input id="inpProjName" width="50%"></Input>
                     <Label text="Project Owner" required="true"></Label>
@@ -25,6 +27,12 @@
                     <Input id="idSite" width="50%" ></Input>
                     <Label text="Email" ></Label>
                     <Input id="idEmail" width="50%" ></Input>
+                    <Label text="Country Code"></Label>
+                    <ComboBox id="countryCodeCB" width="50%" selectedItem="+91">
+                        <core:Item key="+91" text="+91 - India"/>
+                        <core:Item key="+1" text="+1 - United States"/>
+                        <core:Item key="+44" text="+44 - United Kingdom"/>
+                    </ComboBox>
                     <Label text="Phone Number" ></Label>
                     <Input id="idPhone" width="50%" ></Input>
                     <Label text="Business Project Manager" ></Label>

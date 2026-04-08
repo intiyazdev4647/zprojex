@@ -49,20 +49,21 @@ sap.ui.define(
             )
           ];
           var that = this;
+          if (oUserData.fullName !== "Default User") {
+            oODataModel.read("/RolesSet", {
+              filters: aFilters,
+              success: function(oData) {
+                oJSONModel.setData(oData.results);
 
-          oODataModel.read("/RolesSet", {
-            filters: aFilters,
-            success: function(oData) {
-              oJSONModel.setData(oData.results);
+                that.setModel(oJSONModel, "rolesModel");
 
-              that.setModel(oJSONModel, "rolesModel");
-
-              console.log("Role Data Loaded:", oData.results);
-            },
-            error: function(oError) {
-              console.error("Error loading data", oError);
-            }
-          });
+                console.log("Role Data Loaded:", oData.results);
+              },
+              error: function(oError) {
+                console.error("Error loading data", oError);
+              }
+            });
+          }
         } else {
           console.warn("Not running inside FLP");
         }

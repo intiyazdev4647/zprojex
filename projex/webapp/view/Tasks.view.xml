@@ -1,5 +1,5 @@
 <mvc:View controllerName="com.ennovi.projex.controller.Tasks"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" 
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
@@ -9,13 +9,11 @@
         <content>
              <Panel >
             <t:Table
-            id="tasksTable" enableColumnReordering="true"  rows="{projectsModel>/tasks}"
-            fixedColumnCount="1" width="100%"  noData="No Records Found"
-            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-            selectionBehavior="RowOnly">
-            <t:rowMode>
-                <rowmodes:Fixed rowCount="16"></rowmodes:Fixed>
-            </t:rowMode>
+                id="tasksTable" enableColumnReordering="true"  rows="{projectsModel>/tasks}"
+                fixedColumnCount="1" width="100%"  noData="No Records Found"
+                selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
+                selectionBehavior="RowOnly" visibleRowCount="16" visibleRowCountMode="Fixed">
+           
             <!-- HEADER TOOLBAR -->
             <t:extension>
                 <OverflowToolbar>
@@ -23,11 +21,11 @@
                     <Title text="All Tasks"/>
                     <ToolbarSpacer/>
 
-                    <SearchField
+                    <!-- <SearchField
                         width="250px"
                         search=".onSearch"
                         placeholder="Search tasks..."
-                        class="sapUiSmallMarginEnd"/>
+                        class="sapUiSmallMarginEnd"/> -->
 
                     <Button
                         text="Add Task"
@@ -56,7 +54,7 @@
                 <t:Column width="100px">
                     <Label text="ID"/>
                     <t:template>
-                        <Link text="{projectsModel>TaskID}"/>
+                        <Link text="{projectsModel>TaskID}" press="onTaskPress"/>
                     </t:template>
                 </t:Column>
                 <!-- Name -->
@@ -71,7 +69,7 @@
                 <t:Column width="200px">
                     <Label text="Project" />
                     <t:template>
-                        <Text text="{projectsModel>Project}"/>
+                        <Text text="{projectsModel>ProjectID}"/>
                     </t:template>
                 </t:Column>
 

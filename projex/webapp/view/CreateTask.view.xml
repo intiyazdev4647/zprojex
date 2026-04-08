@@ -1,7 +1,7 @@
 <mvc:View
     controllerName="com.ennovi.projex.controller.CreateTask"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
+    xmlns="sap.m"  xmlns:upload="sap.m.upload"
     xmlns:form="sap.ui.layout.form"
     displayBlock="true">
 
@@ -9,207 +9,185 @@
 
     <content>
 
-        <IconTabBar expandable="false">
-
-            <items>
-
-                <!-- Basic Task Info -->
-                <IconTabFilter text="Task Details" icon="sap-icon://task">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Project Name" required="true"/>
-                            <Input width="50%" id="inpProjectName"/>
-
-                            <Label text="Task Name" required="true"/>
-                            <Input width="50%" id="inpTaskName"/>
-
-                            <Label text="Description" required="true"/>
-                            <Input width="50%" id="inpDescription"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-
-                <!-- Task Info -->
-                <IconTabFilter text="Task Info" icon="sap-icon://hint">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Owner" required="true"/>
-                            <Input width="50%" id="inpOwner"/>
-
-                            <Label text="Current Owner" required="true"/>
-                            <Input width="50%" id="inpCurrentOwner"/>
-
-                            <Label text="CR Nature" required="true"/>
-                            <Input width="50%" id="inpCRNature"/>
-
-                            <Label text="Change Type" required="true"/>
-                            <Input width="50%" id="inpChangeType"/>
-
-                            <Label text="SolMan CR Id"/>
-                            <Input width="50%" id="inpSolManCRId"/>
-
-                            <Label text="Start Date"/>
-                            <DatePicker width="50%" id="inpStartDate"/>
-
-                            <Label text="Due Date"/>
-                            <DatePicker width="50%" id="inpDueDate"/>
-
-                            <Label text="HelpDesk Ticket Number"/>
-                            <Input width="50%" id="inpHelpDesk"/>
-
-                            <Label text="Sprint"/>
-                            <Input width="50%" id="inpSprint"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-
-                <!-- Functional Info -->
-                <IconTabFilter text="Functional Info" icon="sap-icon://employee">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Functional Owner"/>
-                            <Input width="50%" id="inpFuncOwner"/>
-
-                            <Label text="SAP CoE Group"/>
-                            <Input width="50%" id="inpCoEGroup"/>
-
-                            <Label text="Priority"/>
-                            <Input width="50%" id="inpPriority"/>
-
-                            <Label text="Module"/>
-                            <Input width="50%" id="inpModule"/>
-
-                            <Label text="Impact" required="true"/>
-                            <Input width="50%" id="inpImpact"/>
-
-                            <Label text="Functional Spec URL"/>
-                            <Input width="50%" id="inpFuncSpecUrl"/>
-
-                            <Label text="Functional Test Script"/>
-                            <Input width="50%" id="inpFuncTestScript"/>
-
-                            <Label text="Config Document"/>
-                            <Input width="50%" id="inpConfigDoc"/>
-
-                            <Label text="Additional Documents"/>
-                            <Input width="50%" id="inpAddDocs"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-
-                <!-- Tech Resource Info -->
-                <IconTabFilter text="Tech Resource Info" icon="sap-icon://developer-settings">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Tech Assessor"/>
-                            <Input width="50%" id="inpTechAssessor"/>
-
-                            <Label text="Associated Dev Duration (Hrs)"/>
-                            <Input width="50%" id="inpDevDuration"/>
-
-                            <Label text="Technical Developer"/>
-                            <Input width="50%" id="inpTechDeveloper"/>
-
-                            <Label text="Technical Complexity"/>
-                            <Input width="50%" id="inpTechComplexity"/>
-
-                            <Label text="Tech Assessment Start"/>
-                            <DatePicker width="50%" id="inpTechStart"/>
-
-                            <Label text="Technical Design Doc"/>
-                            <Input width="50%" id="inpTechDesignDoc"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-
-                <!-- Requestor Info -->
-                <IconTabFilter text="Requestor Info" icon="sap-icon://customer">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Requestor Email"/>
-                            <Input width="50%" id="inpReqEmail"/>
-
-                            <Label text="Company Site"/>
-                            <Input width="50%" id="inpCompanySite"/>
-
-                            <Label text="Position / Role"/>
-                            <Input width="50%" id="inpRole"/>
-
-                            <Label text="Region" required="true"/>
-                            <Input width="50%" id="inpRegion"/>
-
-                            <Label text="Contact Number"/>
-                            <Input width="50%" id="inpContact"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-
-                <!-- Request Details -->
-                <IconTabFilter text="Request Details" icon="sap-icon://document-text">
-
-                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-
-                        <form:content>
-
-                            <Label text="Description of Problem (As-Is)" required="true"/>
-                            <TextArea width="50%" id="inpProblemDesc"/>
-
-                            <Label text="Description of To-Be State"/>
-                            <TextArea width="50%" id="inpToBeState"/>
-
-                            <Label text="BRD SharePoint Link"/>
-                            <Input width="50%" id="inpBRDLink"/>
-
-                            <Label text="Reasons and Justification"/>
-                            <TextArea width="50%" id="inpReason"/>
-
-                            <Label text="Priority to Implement"/>
-                            <Input width="50%" id="inpPriorityImplement"/>
-
-                        </form:content>
-
-                    </form:SimpleForm>
-
-                </IconTabFilter>
-
-            </items>
-
-        </IconTabBar>
+        <VBox>
+
+            <!-- ================= Task Details ================= -->
+            <Panel headerText="Task Details" expandable="true" expanded="true">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Project Name" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpProjectName"/>
+
+                        <Label text="Task Name" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpTaskName"/>
+
+                        <Label text="Description" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpDescription"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- ================= Task Info ================= -->
+            <Panel headerText="Task Info" expandable="true" expanded="false">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Owner" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpOwner"/>
+
+                        <Label text="Current Owner" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpCurrentOwner"/>
+
+                        <Label text="CR Nature" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpCRNature"/>
+
+                        <Label text="Change Type" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpChangeType"/>
+
+                        <Label text="SolMan CR Id"/>
+                        <Input width="50%" id="inpSolManCRId"/>
+
+                        <Label text="Start Date"/>
+                        <DatePicker width="50%" id="inpStartDate"/>
+
+                        <Label text="Due Date"/>
+                        <DatePicker width="50%" id="inpDueDate"/>
+
+                        <Label text="HelpDesk Ticket Number"/>
+                        <Input width="50%" id="inpHelpDesk"/>
+
+                        <Label text="Sprint"/>
+                        <Input width="50%" id="inpSprint"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- ================= Functional Info ================= -->
+            <Panel headerText="Functional Info" expandable="true" expanded="false">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+
+                        <Label text="Functional Owner"/>
+                        <Input width="50%" id="inpFuncOwner"/>
+
+                        <Label text="SAP CoE Group"/>
+                        <Input width="50%" id="inpCoEGroup"/>
+
+                        <Label text="Priority"/>
+                        <Input width="50%" id="inpPriority"/>
+
+                        <Label text="Module"/>
+                        <Input width="50%" id="inpModule"/>
+
+                        <Label text="Impact" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpImpact"/>
+
+                        <!-- Upload Sets remain same -->
+                        <Label text="Functional Spec URL (+)"/>
+                        <upload:UploadSet id="uploadFuncSpec" instantUpload="false"
+                            items="{funcSpecModel>/files}">
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{funcSpecModel>fileName}" uploadState="Complete"/>
+                            </upload:items>
+                        </upload:UploadSet>
+
+                        <Label text="Functional Test Script (+)"/>
+                        <upload:UploadSet id="uploadFuncTest" instantUpload="false"
+                            items="{funcTestModel>/files}">
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{funcTestModel>fileName}" uploadState="Complete"/>
+                            </upload:items>
+                        </upload:UploadSet>
+
+                        <Label text="Config Document (+)"/>
+                        <upload:UploadSet id="uploadConfigDoc" instantUpload="false"
+                            items="{configDocModel>/files}">
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{configDocModel>fileName}" uploadState="Complete"/>
+                            </upload:items>
+                        </upload:UploadSet>
+
+                        <Label text="Additional Documents (+)"/>
+                        <upload:UploadSet id="uploadAddDocs" instantUpload="false"
+                            items="{addDocsModel>/files}">
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{addDocsModel>fileName}" uploadState="Complete"/>
+                            </upload:items>
+                        </upload:UploadSet>
+
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- ================= Tech Resource Info ================= -->
+            <Panel headerText="Tech Resource Info" expandable="true" expanded="false">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Tech Assessor"/>
+                        <Input width="50%" id="inpTechAssessor"/>
+
+                        <Label text="Associated Dev Duration (Hrs)"/>
+                        <Input width="50%" id="inpDevDuration"/>
+
+                        <Label text="Technical Developer"/>
+                        <Input width="50%" id="inpTechDeveloper"/>
+
+                        <Label text="Technical Complexity"/>
+                        <Input width="50%" id="inpTechComplexity"/>
+
+                        <Label text="Tech Assessment Start"/>
+                        <DatePicker width="50%" id="inpTechStart"/>
+
+                        <Label text="Technical Design Doc"/>
+                        <Input width="50%" id="inpTechDesignDoc"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- ================= Requestor Info ================= -->
+            <Panel headerText="Requestor Info" expandable="true" expanded="false">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Requestor Email"/>
+                        <Input width="50%" id="inpReqEmail"/>
+
+                        <Label text="Company Site"/>
+                        <Input width="50%" id="inpCompanySite"/>
+
+                        <Label text="Position / Role"/>
+                        <Input width="50%" id="inpRole"/>
+
+                        <Label text="Region" required="true"/>
+                        <Input width="50%" liveChange="onFieldLiveChange" id="inpRegion"/>
+
+                        <Label text="Contact Number"/>
+                        <Input width="50%" id="inpContact"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+            <!-- ================= Request Details ================= -->
+            <Panel headerText="Request Details" expandable="true" expanded="false">
+                <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <form:content>
+                        <Label text="Description of Problem (As-Is)" required="true"/>
+                        <TextArea width="50%" liveChange="onFieldLiveChange" id="inpProblemDesc"/>
+
+                        <Label text="Description of To-Be State"/>
+                        <TextArea width="50%" id="inpToBeState"/>
+
+                        <Label text="BRD SharePoint Link"/>
+                        <Input width="50%" id="inpBRDLink"/>
+
+                        <Label text="Reasons and Justification"/>
+                        <TextArea width="50%" id="inpReason"/>
+
+                        <Label text="Priority to Implement"/>
+                        <Input width="50%" id="inpPriorityImplement"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+
+        </VBox>
 
     </content>
 

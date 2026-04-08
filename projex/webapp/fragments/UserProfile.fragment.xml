@@ -1,0 +1,34 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+
+    <Popover
+        title="User Profile"
+        placement="Bottom"
+        contentWidth="300px">
+
+        <content>
+            <VBox class="sapUiSmallMargin">
+
+                <HBox class="sapUiTinyMarginBottom">
+                    <Text text="Name:" width="80px"/>
+                    <Text text="{user>/fullName}"/>
+                </HBox>
+
+                <HBox class="sapUiTinyMarginBottom">
+                    <Text text="User ID:" width="80px"/>
+                    <Text text="{user>/id}"/>
+                </HBox>
+
+                <HBox class="sapUiTinyMarginBottom">
+                    <Text text="Email:" width="80px"/>
+                    <Text text="{user>/email}"/>
+                </HBox>
+
+            </VBox>
+        </content>
+
+    </Popover>
+
+</core:FragmentDefinition>

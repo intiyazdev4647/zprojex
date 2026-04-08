@@ -1,200 +1,153 @@
-<mvc:View xmlns:rowmodes="sap.ui.table.rowmodes" controllerName="com.ennovi.projex.controller.Projects"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    displayBlock="true">
-    
-    <Page title="Projects" showHeader="false" class="sapUiTinyMarginTop">
-        <content>
-           
-        <Panel >
-            <t:Table
-            id="projectsTable" enableColumnReordering="true"  rows="{projectsModel>/projects}"
-            fixedColumnCount="2" width="100%"  noData="No Records Found"
-            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-            selectionBehavior="RowOnly">
-            <t:rowMode>
-                <rowmodes:Fixed rowCount="16"> </rowmodes:Fixed>
-            </t:rowMode>
-            <!-- HEADER TOOLBAR -->
-            <t:extension>
-                <OverflowToolbar>
-
-                    <Title text="All Projects"/>
-                    <ToolbarSpacer/>
-
-                    <SearchField
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" controllerName="com.ennovi.projex.controller.Projects" displayBlock="true" height="100%">
+	<Page title="Projects" showHeader="false" enableScrolling="false" class="sapUiTinyMarginTop">
+		<content>
+			<Panel>
+				<t:Table id="mainprojectsTable" rows="{projectsModel>/projects}" fixedColumnCount="2" width="100%" selectionMode="Single" ariaLabelledBy="title" visibleRowCount="16" visibleRowCountMode="Fixed" alternateRowColors="true">
+					<t:extension>
+						<OverflowToolbar>
+							<Title text="All Projects"/>
+							<ToolbarSpacer/>
+							<!--  <SearchField
                         width="250px"
                         search=".onSearch"
                         placeholder="Search project..."
-                        class="sapUiSmallMarginEnd"/>
+                        class="sapUiSmallMarginEnd"/> -->
+							<Button id="pbtn1" text="Add Project" type="Emphasized" press=".onAddProject" class="sapUiTinyMarginEnd"/>
+							<Button id="pbtn2" icon="sap-icon://filter" press=".onFilterPress" class="sapUiTinyMarginEnd"/>
+							<Button id="pbtn3" text="Clear" press=".onClear"/>
+						</OverflowToolbar>
+					</t:extension>
+					<!--  ALL COLUMNS  -->
+					<t:columns>
+						<!--  ID  -->
+						<t:Column width="120px">
+							<Label text="ID"/>
+							<t:template>
+								<Link text="{projectsModel>ProjectID}" press=".onProjectLinkPress"/>
+							</t:template>
+						</t:Column>
+						<!--  Name  -->
+						<t:Column width="200px">
+							<Label text="Name"/>
+							<t:template>
+								<Link text="{projectsModel>ProjectName}" press=".onProjectLinkPress"/>
+							</t:template>
+						</t:Column>
+						<!--  Owner  -->
+						<t:Column width="120px">
+							<Label text="Owner"/>
+							<t:template>
+								<Text text="{projectsModel>Owner}"/>
+							</t:template>
+						</t:Column>
+						<!--  Status  -->
+						<t:Column width="100px">
+							<Label text="Status"/>
+							<t:template>
+								<!-- <Text text="{projectsModel>Status}"/> -->
+								<ObjectStatus text="{projectsModel>Status}" state="{= ${projectsModel>Status} === 'Active' ? 'Success' : (${projectsModel>Status} === 'Completed' ? 'Information' : 'Error') }"/>
+							</t:template>
+						</t:Column>
+						
+						<!--  Tasks  -->
+						<t:Column width="200px">
+							<Label text="Tasks"/>
+							<t:template>
+								<!-- <Text text="{projectsModel>Tasks}"/> -->
+                                <HBox>
+                                    <Text class="sapUiTinyMarginTop sapUiTinyMarginEnd" text="{projectsModel>CompletedTasks}" />
+                                    <ProgressIndicator
+                                        percentValue="{projectsModel>TaskPercent}" displayValue="{projectsModel>TaskPercent} %"
+                                        showValue="true"
+                                        state="Success"
+                                        width="8rem"/>
 
-                    <Button
-                        text="Add Project"
-                        icon="sap-icon://add"
-                        type="Emphasized"
-                        press=".onAddProject"
-                        class="sapUiTinyMarginEnd"/>
+                                    <Text class="sapUiTinyMarginTop sapUiTinyMarginBegin" text="{projectsModel>TotalTasks}" />
+                                </HBox>
+							</t:template>
+						</t:Column>
+						<!--  Milestones  -->
+						<t:Column width="200px">
+							<Label text="Milestones"/>
+							<t:template>
+								<!-- <Text text="{projectsModel>Milestones}"/> -->
+                                <HBox >
+                                    <Text class="sapUiTinyMarginTop sapUiTinyMarginEnd" text="{projectsModel>CompletedMilestones}" />
+                                    <ProgressIndicator
+                                        percentValue="{projectsModel>MilestonePercent}" displayValue="{projectsModel>MilestonePercent} %"
+                                        showValue="true" 
+                                        state="Success"
+                                        width="8rem"/>
 
-                    <Button
-                        icon="sap-icon://filter"
-                        press=".onFilterPress"
-                        class="sapUiTinyMarginEnd"/>
-
-                    <Button
-                        text="Clear"
-                        press=".onClear"/>
-
-                </OverflowToolbar>
-            </t:extension>
-
-            <!-- ALL COLUMNS -->
-            <t:columns>
-
-                <!-- ID -->
-                <t:Column width="120px">
-                    <Label text="ID"/>
-                    <t:template>
-                        <Link text="{projectsModel>ProjectID}" press="onProjectLinkPress"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Name -->
-                <t:Column width="200px">
-                    <Label text="Name"/>
-                    <t:template>
-                        <Link text="{projectsModel>ProjectName}" press="onProjectLinkPress"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Completion -->
-                <t:Column width="100px">
-                    <Label text="Completion %"/>
-                    <t:template>
-                        <Text text="{projectsModel>Completion}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Owner -->
-                <t:Column width="120px">
-                    <Label text="Owner"/>
-                    <t:template>
-                        <Text text="{projectsModel>Owner}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Tasks -->
-                <t:Column width="100px">
-                    <Label text="Tasks"/>
-                    <t:template>
-                        <Text text="{projectsModel>Tasks}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Milestones -->
-                <t:Column width="100px">
-                    <Label text="Milestones"/>
-                    <t:template>
-                        <Text text="{projectsModel>Milestones}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Start Date -->
-                <t:Column width="110px">
-                    <Label text="Start Date"/>
-                    <t:template>
-                        <!-- <DatePicker
-                            value="{
-                                path: 'projectsModel>StartDate',
-                                type: 'sap.ui.model.type.Date',
-                                formatOptions: {
-                                    pattern: 'dd-MM-yyyy'
-                                }
-                            }"
-                            displayFormat="dd-MM-yyyy"/> -->
-                            <Text text="{ path: 'projectsModel>StartDate',
-                                type: 'sap.ui.model.type.Date',
-                                formatOptions: {
-                                    pattern: 'dd-MM-yyyy'
-                                }
-                            }"></Text>
-                    </t:template>
-                </t:Column>
-
-                <!-- End Date -->
-                <t:Column width="110px">
-                    <Label text="End Date"/>
-                    <t:template>
-                        <!-- <DatePicker
-                            value="{
-                                path: 'projectsModel>EndDate',
-                                type: 'sap.ui.model.type.Date',
-                                formatOptions: {
-                                    pattern: 'dd-MM-yyyy'
-                                }
-                            }"
-                            displayFormat="dd-MM-yyyy"/> -->
-                            <Text text="{ path: 'projectsModel>EndDate',
-                                type: 'sap.ui.model.type.Date',
-                                formatOptions: {
-                                    pattern: 'dd-MM-yyyy'
-                                }
-                            }"></Text>
-                    </t:template>
-                </t:Column>
-
-                <!-- Department -->
-                <t:Column width="140px">
-                    <Label text="Department"/>
-                    <t:template>
-                        <Text text="{projectsModel>Department}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Site -->
-                <t:Column width="120px">
-                    <Label text="Site"/>
-                    <t:template>
-                        <Text text="{projectsModel>Site}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Email -->
-                <t:Column width="180px">
-                    <Label text="Email"/>
-                    <t:template>
-                        <Text text="{projectsModel>Email}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Phone No -->
-                <t:Column width="120px">
-                    <Label text="Phone No."/>
-                    <t:template>
-                        <Text text="{projectsModel>MobilePhone}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Business Project Manager -->
-                <t:Column width="160px">
-                    <Label text="Business Project Manager"/>
-                    <t:template>
-                        <Text text="{projectsModel>BusProjMngr}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Business PM Phone -->
-                <!-- <t:Column width="120px">
-                    <Label text="Phone No."/>
-                    <t:template>
-                        <Text text="{projectsModel>businessPNo}"/>
-                    </t:template>
-                </t:Column> -->
-
-            </t:columns>
-        </t:Table>
-        </Panel>
-        </content>
-    </Page>
-    
+                                    <Text class="sapUiTinyMarginTop sapUiTinyMarginBegin" text="{projectsModel>TotalMilestones}" />
+                                </HBox>
+							</t:template>
+						</t:Column>
+						<!--  Start Date  -->
+						<t:Column width="110px">
+							<Label text="Start Date"/>
+							<t:template>
+								<Text text="{ path: 'projectsModel>StartDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd-MM-yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--  End Date  -->
+						<t:Column width="110px">
+							<Label text="End Date"/>
+							<t:template>
+								<Text text="{ path: 'projectsModel>EndDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd-MM-yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--  Department  -->
+						<t:Column width="140px">
+							<Label text="Department"/>
+							<t:template>
+								<Text text="{projectsModel>Department}"/>
+							</t:template>
+						</t:Column>
+						<!--  Site  -->
+						<t:Column width="120px">
+							<Label text="Site"/>
+							<t:template>
+								<Text text="{projectsModel>Site}"/>
+							</t:template>
+						</t:Column>
+						<!--  Email  -->
+						<t:Column width="180px">
+							<Label text="Email"/>
+							<t:template>
+								<Text text="{projectsModel>Email}"/>
+							</t:template>
+						</t:Column>
+						<!-- Country Code  -->
+						<t:Column width="120px">
+							<Label text="Country Code"/>
+							<t:template>
+								<Text text="{projectsModel>CountryCode}"/>
+							</t:template>
+						</t:Column>
+						<!--  Phone No  -->
+						<t:Column width="120px">
+							<Label text="Phone No."/>
+							<t:template>
+								<Text text="{projectsModel>MobilePhone}"/>
+							</t:template>
+						</t:Column>
+						<!--  Business Project Manager  -->
+						<t:Column width="160px">
+							<Label text="Business Project Manager"/>
+							<t:template>
+								<Text text="{projectsModel>BusProjMngr}"/>
+							</t:template>
+						</t:Column>
+						<!--  Business PM Phone  -->
+						<!--  <t:Column width="120px"><Label text="Phone No."/><t:template><Text text="{projectsModel>businessPNo}"/></t:template></t:Column>  -->
+					</t:columns>
+				</t:Table>
+			</Panel>
+		</content>
+	</Page>
 </mvc:View>

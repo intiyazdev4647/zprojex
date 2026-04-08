@@ -12,13 +12,16 @@ sap.ui.define(
         // this.getView().setModel(models.sideModel(), "side");
         var oJsonModel = new JSONModel({});
         this.getView().setModel(oJsonModel, "projectsModel");
+        this.getOwnerComponent().getRouter().getRoute("Home").attachPatternMatched(this._onRouteMatched, this);
+      },
+      _onRouteMatched: function() {
         this.loadProjectsData();
         this.loadMilestonesData();
         this.loadTasksData();
       },
       loadProjectsData: function() {
         var oList = this.getView().byId("projectsList");
-        oList.setBusy(true)
+        oList.setBusy(true);
         var oModel = this.getOwnerComponent().getModel();
         var that = this;
         var oTimeout = setTimeout(function() {
@@ -53,7 +56,7 @@ sap.ui.define(
         oModel.read("/MilestonesSet", {
           success: function(oData) {
             if (oData && oData.results) {
-              clearTimeout(oTimeout);  
+              clearTimeout(oTimeout);
               that.getView().byId("milestonesList").setBusy(false);
               var oJsonModel = that.getView().getModel("projectsModel");
               oJsonModel.setProperty("/milestones", oData.results);
@@ -71,19 +74,45 @@ sap.ui.define(
         });
       },
       loadTasksData: function() {
+        var oList = this.getView().byId("tasksList");
+        oList.setBusy(true);
         var oModel = this.getOwnerComponent().getModel();
         var that = this;
+        var oTimeout = setTimeout(function() {
+          oList.setBusy(false);
+        }, 20000);
         oModel.read("/TasksSet", {
           success: function(oData) {
             if (oData && oData.results) {
+              clearTimeout(oTimeout);
+              that.getView().byId("tasksList").setBusy(false);
               var oJsonModel = that.getView().getModel("projectsModel");
               oJsonModel.setProperty("/tasks", oData.results);
+              console.log("Tasks Data:", oData.results);
             }
           },
           error: function(oError) {
+            clearTimeout(oTimeout);
+            that.getView().byId("tasksList").setBusy(false);
             console.error("Error while reading Tasks:", oError);
           }
         });
+      },
+      onProjectPress: function(oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oCtx = oItem.getBindingContext("projectsModel");
+        var oProject = oCtx.getObject();
+        var sProjectId = oProject.ProjectID;
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("DisplayProject", { projectID: sProjectId });
+      },
+      onMilestonePress: function(oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oCtx = oItem.getBindingContext("projectsModel");
+        var oMilestone = oCtx.getObject();
+        var sMilestoneName = oMilestone.Name;
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("DisplayMilestone", { milestoneName: sMilestoneName });
       }
     });
   }

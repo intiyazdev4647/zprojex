@@ -23,9 +23,41 @@ sap.ui.define(
         var sHash = oRouter.getHashChanger().getHash();
         var sSelectedKey = sHash.split("/")[0];
         var oModel = this.getView().getModel("side");
+        if (sRouteName === "Home") {
+          sSelectedKey = "home";
+        }
         oModel.setProperty("/selectedKey", sSelectedKey);
       },
+      onProfilePress: function(oEvent) {
+        var oSource = oEvent.getSource();
 
+        // Get user data
+        var oUser = sap.ushell.Container.getUser();
+
+        var oUserData = {
+          id: oUser.getId(),
+          fullName: oUser.getFullName(),
+          email: oUser.getEmail()
+        };
+
+        var oModel = new sap.ui.model.json.JSONModel(oUserData);
+
+        // Load Fragment (only once)
+        if (!this._oUserPopover) {
+          this._oUserPopover = sap.ui.xmlfragment(
+            "com.ennovi.projex.fragments.UserProfile",
+            this
+          );
+
+          this.getView().addDependent(this._oUserPopover);
+        }
+
+        // Set model
+        this._oUserPopover.setModel(oModel, "user");
+
+        // Open popover
+        this._oUserPopover.openBy(oSource);
+      },
       onSideNavButtonPress: function() {
         var oToolPage = this.byId("app");
         var bSideExpanded = oToolPage.getSideExpanded();

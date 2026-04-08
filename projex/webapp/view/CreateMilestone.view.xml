@@ -21,8 +21,8 @@
                     <Label text="Flag" required="true"></Label>
                     <ComboBox id="flagCB" change="onSelectFlag" width="50%">
                         <items>
-                            <core:Item text="Internal" key="Internal"></core:Item>
-                            <core:Item text="External" key="External"></core:Item>
+                            <core:Item text="Internal" key="I"></core:Item>
+                            <core:Item text="External" key="E"></core:Item>
                         </items>
                     </ComboBox>
                     <Label text="Owner" required="true"></Label>

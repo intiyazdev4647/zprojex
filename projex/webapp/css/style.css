@@ -1,1 +1,81 @@
 /* Enter your custom styles here */
+.pointerCursor {
+    cursor: pointer;
+}
+.compactUploadSet {
+    width: 50%;
+}
+
+.compactUploadSet .sapMUploadSet {
+    min-height:20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 0.2rem;
+}
+
+.compactUploadSet .sapMUploadSetDragDropArea {
+    display: none; /* removes big box */
+}
+
+.compactUploadSet .sapMUploadSetList {
+    margin: 0;
+}
+
+/* Move dialog container to right */
+.customRightDialog.sapMDialog {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+
+    height: 100% !important;
+    width: 20% !important;
+    max-width: 20% !important;
+
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* ❗ DO NOT break sapMDialogSection layout */
+.sapMDialogSection {
+    display: block !important; /* reset flex */
+}
+
+/* Ensure dialog content fills properly */
+.customRightDialog .sapMDialogScrollCont {
+    height: 100% !important;
+}
+
+/* Fix inner content visibility */
+.customRightDialog .sapMVSD {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fix list area */
+.customRightDialog .sapMVSDContent {
+    flex: 1;
+    overflow: auto;
+}
+
+/* Animation */
+.customRightDialog.sapMDialogOpen {
+    animation: slideInRight 0.25s ease;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.sidePanelDialog .sapMDialog {
+    width: 350px !important;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+}
+
+/* Push to right */
+.sidePanelDialog .sapMDialogSection {
+    justify-content: flex-end;
+}

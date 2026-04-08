@@ -12,10 +12,8 @@
             id="timelogsTable" enableColumnReordering="true"  rows="{projectsModel>/timelogs}"
             fixedColumnCount="1" width="100%"  noData="No Records Found"
             selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-            selectionBehavior="RowOnly">
-            <t:rowMode>
-                <rowmodes:Fixed rowCount="16"></rowmodes:Fixed>
-            </t:rowMode>
+            selectionBehavior="RowOnly" visibleRowCount="16" visibleRowCountMode="Fixed">
+           
             <!-- HEADER TOOLBAR -->
             <t:extension>
                 <OverflowToolbar>

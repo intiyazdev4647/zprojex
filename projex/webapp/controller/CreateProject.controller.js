@@ -18,6 +18,7 @@ sap.ui.define(
       },
       _onRouteMatched: function(oEvent) {
         // Clear input fields when the route is matched
+        this.getView().byId("inpProjId").setValue("");
         this.getView().byId("inpProjName").setValue("");
         this.getView().byId("inpProjOwner").setValue("");
         this.getView().byId("inpProjDesc").setValue("");
@@ -34,6 +35,7 @@ sap.ui.define(
         var oView = this.getView();
 
         // Get all fields
+        var oProjId = oView.byId("inpProjId");
         var oProjName = oView.byId("inpProjName");
         var oProjOwner = oView.byId("inpProjOwner");
         var oProjDesc = oView.byId("inpProjDesc");
@@ -44,6 +46,7 @@ sap.ui.define(
 
         // Reset value states
         var aFields = [
+          oProjId,
           oProjName,
           oProjOwner,
           oProjDesc,
@@ -67,6 +70,7 @@ sap.ui.define(
         }
 
         // Mandatory field checks
+        validateField(oProjId, "Project Id is required");
         validateField(oProjName, "Project Name is required");
         validateField(oProjOwner, "Project Owner is required");
         validateField(oProjDesc, "Project Description is required");
@@ -93,6 +97,7 @@ sap.ui.define(
 
         // Prepare payload
         var payload = {
+          ProjectID: oProjId.getValue(),
           ProjectName: oProjName.getValue(),
           Owner: oProjOwner.getValue(),
           Description: oProjDesc.getValue(),
@@ -102,7 +107,8 @@ sap.ui.define(
           Site: oSite.getValue(),
           Email: oView.byId("idEmail").getValue(),
           MobilePhone: oView.byId("idPhone").getValue(),
-          BusProjMngr: oView.byId("idBusinessPM").getValue()
+          BusProjMngr: oView.byId("idBusinessPM").getValue(),
+          CountryCode: oView.byId("countryCodeCB").getSelectedKey()
         };
         if (payload.EndDate) {
           let oEndDate = new Date(payload.EndDate);
@@ -134,6 +140,24 @@ sap.ui.define(
                 MessageBox.error("Error while creating project. Please try again.");
             }
         }); 
+      },
+      projectIdChange: function(oEvent) {
+        var oInput = oEvent.getSource();
+        var sValue = oInput.getValue();
+
+        // Simple validation: Project ID must be alphanumeric and 5-10 characters and no spaces in between
+        var oRegExp = /^[a-zA-Z0-9]{5,10}$/;
+
+        if (!oRegExp.test(sValue)) {
+          oInput.setValueState("Error");
+          oInput.setValueStateText(
+            "Project ID must be 5-10 characters, alphanumeric, and no spaces"
+          );
+        } else {
+          oInput.setValueState("None");
+        }
+
+        
       },
       onCancel: function() {
         var that = this;

@@ -1,0 +1,107 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+ 
+    <Dialog
+        id="fDialog"
+        title="Filter"
+        contentWidth="400px"
+        draggable="true">
+ 
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Title text="Filter"/>
+                </contentLeft>
+                <contentRight>
+                    <Button text="Reset" type="Transparent" press="onFilterReset"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+ 
+        <content>
+            <VBox class="sapUiSmallMargin">
+ 
+                <!-- Search Box -->
+                <SearchField
+                    id="fFieldSearch"
+                    placeholder="Filter Search"
+                    liveChange=".onFilterFieldSearch"
+                    class="sapUiTinyMarginBottom"/>
+  <Panel id="pnlProjectName" headerText="Project Name"
+                                    expandable="true" expanded="false" class="sapUiTinyMarginBottom">
+                                      <ComboBox id="filterprojName" width="100%"
+                        items="{projectsModel>/project}">
+                        <core:Item key="{projectsModel>key}" text="{projectsModel>name}"/>
+                    </ComboBox>
+                                    </Panel>
+                   
+                <!-- Owner -->
+                <Panel id="pnlOwner" headerText="Owner" expandable="true" expanded="false">
+                    <ComboBox id="filterOwner" width="100%"
+                        items="{projectsModel>/ownerList}">
+                        <core:Item key="{projectsModel>key}" text="{projectsModel>name}"/>
+                    </ComboBox>
+                </Panel>
+ 
+                <!-- Start Date -->
+                <Panel id="pnlStartDate" headerText="Start Date" expandable="true" expanded="false">
+                    <HBox width="100%">
+                        <DatePicker id="filterStartDateFrom" placeholder="From" displayFormat="dd-MM-yyyy" width="50%"/>
+                        <DatePicker id="filterStartDateTo"   placeholder="To"   displayFormat="dd-MM-yyyy" width="50%"/>
+                    </HBox >
+                </Panel>
+ 
+                <!-- End Date -->
+                <Panel id="pnlEndDate" headerText="End Date" expandable="true" expanded="false">
+                   <HBox width="100%">
+                        <DatePicker id="filterEndDateFrom" placeholder="From" displayFormat="dd-MM-yyyy" width="50%"/>
+                        <DatePicker id="filterEndDateTo"   placeholder="To"   displayFormat="dd-MM-yyyy" width="50%"/>
+                     </HBox>
+                </Panel>
+ 
+                <!-- Department -->
+                <Panel id="pnlDepartment" headerText="Department" expandable="true" expanded="false">
+                    <ComboBox id="filterDepartment" width="100%"
+                        items="{projectsModel>/departmentList}">
+                        <core:Item key="{projectsModel>key}" text="{projectsModel>name}"/>
+                    </ComboBox>
+                </Panel>
+ 
+                <!-- Site -->
+                <Panel id="pnlSite" headerText="Site" expandable="true" expanded="false">
+                    <ComboBox id="filterSite" width="100%"
+                        items="{projectsModel>/siteList}">
+                        <core:Item key="{projectsModel>key}" text="{projectsModel>name}"/>
+                    </ComboBox>
+                </Panel>
+ 
+                <!-- Business Project Manager -->
+                <Panel id="pnlBPM" headerText="Business Project Manager" expandable="true" expanded="false">
+                    <Input id="filterBPM" placeholder="Enter name..." width="100%"/>
+                </Panel>
+ 
+                   <Panel id="pnlEmail" headerText="Email" expandable="true" expanded="false">
+                    <Input id="filterEmail" placeholder="Enter Email..." width="100%"/>
+                </Panel>
+                <!-- Completion % -->
+                <Panel id="pnlCompletion" headerText="Completion %" expandable="true" expanded="false">
+                    <HBox width="100%">
+                        <Input id="filterCompletionFrom" placeholder="From %" type="Number" width="50%"/>
+                        <Input id="filterCompletionTo"   placeholder="To %"   type="Number" width="50%"/>
+                    </HBox >
+                </Panel>
+ 
+            </VBox>
+        </content>
+ 
+        <buttons>
+         
+            <Button text="Cancel" press=".onFilterCancel"/>
+            <Button text="Find"   type="Emphasized" press=".onFilterFind"/>
+        </buttons>
+ 
+    </Dialog>
+ 
+</core:FragmentDefinition>

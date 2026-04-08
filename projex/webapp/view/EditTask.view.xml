@@ -1,0 +1,209 @@
+<mvc:View
+    controllerName="com.ennovi.projex.controller.EditTask"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    displayBlock="true"
+    models="{editTaskModel: 'editTaskModel'}">
+
+<Page title="Edit Task" showHeader="true">
+
+    <content>
+
+        <IconTabBar expandable="false">
+
+            <items>
+
+                <!-- ================= Task Details ================= -->
+                <IconTabFilter text="Task Details" icon="sap-icon://task">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Project Name" required="true"/>
+                            <Input value="{editTaskModel>/ProjectID}" width="50%"/>
+
+                            <Label text="Task Name" required="true"/>
+                            <Input value="{editTaskModel>/TaskName}" width="50%"/>
+
+                            <Label text="Description" required="true"/>
+                            <Input value="{editTaskModel>/Description}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+
+                <!-- ================= Task Info ================= -->
+                <IconTabFilter text="Task Info" icon="sap-icon://hint">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Owner" required="true"/>
+                            <Input value="{editTaskModel>/Owner}" width="50%"/>
+
+                            <Label text="Current Owner" required="true"/>
+                            <Input value="{editTaskModel>/CurrentOwner}" width="50%"/>
+
+                            <Label text="CR Nature" required="true"/>
+                            <Input value="{editTaskModel>/CRNature}" width="50%"/>
+
+                            <Label text="Change Type" required="true"/>
+                            <Input value="{editTaskModel>/ChangeType}" width="50%"/>
+
+                            <Label text="SolMan CR Id"/>
+                            <Input value="{editTaskModel>/SolmanCRID}" width="50%"/>
+
+                            <Label text="Start Date"/>
+                            <DatePicker dateValue="{editTaskModel>/StartDate}" width="50%"/>
+
+                            <Label text="Due Date"/>
+                            <DatePicker dateValue="{editTaskModel>/EndDate}" width="50%"/>
+
+                            <Label text="HelpDesk Ticket Number"/>
+                            <Input value="{editTaskModel>/HDTicketNo}" width="50%"/>
+
+                            <Label text="Sprint"/>
+                            <Input value="{editTaskModel>/Sprint}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+
+                <!-- ================= Functional Info ================= -->
+                <IconTabFilter text="Functional Info" icon="sap-icon://employee">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Functional Owner"/>
+                            <Input value="{editTaskModel>/FuncOwner}" width="50%"/>
+
+                            <Label text="SAP CoE Group"/>
+                            <Input value="{editTaskModel>/SAPCOEGrp}" width="50%"/>
+
+                            <Label text="Priority"/>
+                            <Input value="{editTaskModel>/Priority}" width="50%"/>
+
+                            <Label text="Module"/>
+                            <Input value="{editTaskModel>/CRModule}" width="50%"/>
+
+                            <Label text="Impact" required="true"/>
+                            <Input value="{editTaskModel>/Impact}" width="50%"/>
+
+                            <Label text="Functional Spec URL"/>
+                            <Input value="{editTaskModel>/FSDURL}" width="50%"/>
+
+                            <Label text="Functional Test Script"/>
+                            <Input value="{editTaskModel>/FTURL}" width="50%"/>
+
+                            <Label text="Config Document"/>
+                            <Input value="{editTaskModel>/ConfigDocURL}" width="50%"/>
+
+                            <Label text="Additional Documents"/>
+                            <Input value="{editTaskModel>/AddDocURL}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+
+                <!-- ================= Tech Resource Info ================= -->
+                <IconTabFilter text="Tech Resource Info" icon="sap-icon://developer-settings">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Tech Assessor"/>
+                            <Input value="{editTaskModel>/TechAssessor}" width="50%"/>
+
+                            <Label text="Associated Dev Duration (Hrs)"/>
+                            <Input value="{editTaskModel>/TechDuration}" width="50%"/>
+
+                            <Label text="Technical Developer"/>
+                            <Input value="{editTaskModel>/TechDeveloper}" width="50%"/>
+
+                            <Label text="Technical Complexity"/>
+                            <Input value="{editTaskModel>/TechComplexity}" width="50%"/>
+
+                            <Label text="Tech Assessment Start"/>
+                            <DatePicker dateValue="{editTaskModel>/TechStartDate}" width="50%"/>
+
+                            <Label text="Technical Design Doc"/>
+                            <Input value="{editTaskModel>/TSDURL}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+
+                <!-- ================= Requestor Info ================= -->
+                <IconTabFilter text="Requestor Info" icon="sap-icon://customer">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Requestor Email"/>
+                            <Input value="{editTaskModel>/RqstrEmail}" width="50%"/>
+
+                            <Label text="Company Site"/>
+                            <Input value="{editTaskModel>/Site}" width="50%"/>
+
+                            <Label text="Position / Role"/>
+                            <Input value="{editTaskModel>/RqstrPosition}" width="50%"/>
+
+                            <Label text="Region" required="true"/>
+                            <Input value="{editTaskModel>/Region}" width="50%"/>
+
+                            <Label text="Contact Number"/>
+                            <Input value="{editTaskModel>/MobilePhone}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+
+                <!-- ================= Request Details ================= -->
+                <IconTabFilter text="Request Details" icon="sap-icon://document-text">
+                    <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                        <form:content>
+
+                            <Label text="Description of Problem (As-Is)" required="true"/>
+                            <TextArea value="{editTaskModel>/AsIs}" width="50%"/>
+
+                            <Label text="Description of To-Be State"/>
+                            <TextArea value="{editTaskModel>/ToBe}" width="50%"/>
+
+                            <Label text="BRD SharePoint Link"/>
+                            <Input value="{editTaskModel>/BRDSPURL}" width="50%"/>
+
+                            <Label text="Priority to Implement"/>
+                            <Input value="{editTaskModel>/PriorityToImpl}" width="50%"/>
+
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+
+            </items>
+
+        </IconTabBar>
+
+    </content>
+
+
+    <!-- ================= Footer ================= -->
+    <footer>
+        <Toolbar>
+            <ToolbarSpacer/>
+
+            <Button 
+                text="Update" 
+                type="Emphasized" 
+                press="onUpdateTask"/>
+
+            <Button 
+                text="Cancel" 
+                press="onCancel"/>
+        </Toolbar>
+    </footer>
+
+</Page>
+
+</mvc:View>

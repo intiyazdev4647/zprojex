@@ -21,7 +21,7 @@ sap.ui.define(
         // Clear input fields when the route is matched
         this.clearFields();
       },
-      clearFields: function(){
+      clearFields: function() {
         this.getView().byId("idProjCB").setSelectedKey("");
         this.getView().byId("inpMilestone").setValue("");
         this.getView().byId("flagCB").setSelectedKey("");
@@ -35,12 +35,12 @@ sap.ui.define(
         var that = this;
         oModel.read("/ProjectsSet", {
           urlParameters: {
-            $select: "Owner,BusProjMngr,ProjectName"
+            $select: "Owner,BusProjMngr,ProjectID"
           },
           success: function(oData) {
             if (oData && oData.results) {
               var uniqueProjects = [
-                ...new Set(oData.results.map(item => item.ProjectName))
+                ...new Set(oData.results.map(item => item.ProjectID))
               ];
               var uniqueOwners = [
                 ...new Set(oData.results.map(item => item.Owner))
@@ -84,24 +84,49 @@ sap.ui.define(
           Flag: flag,
           Owner: owner,
           StartDate: "/Date(" + new Date(sDate).getTime() + ")/",
-          EndDate: "/Date(" + new Date(eDate).getTime() + ")/"
-        //   ,businessOwner: businessOwner
+          EndDate: "/Date(" + new Date(eDate).getTime() + ")/",
+          businessOwner: businessOwner
         };
         console.log("Payload for Milestone Creation:", payload);
         var oModel = this.getOwnerComponent().getModel();
         oModel.create("/MilestonesSet", payload, {
-            success: function(oData) {
-                MessageToast.show("Milestone created successfully!");
-                console.log("Milestone created successfully:", oData);
-                that.clearFields();
-            },
-            error: function(oError) {
-                MessageToast.show("Error creating milestone.");
-                console.error("Error creating milestone:", oError);
-
-            }
+          success: function() {
+            MessageBox.success("Milestone created successfully!",{
+              title: "Success",
+              actions: [MessageBox.Action.OK],
+              onClose: function(sAction) {
+                if (sAction === MessageBox.Action.OK) {
+                  that.clearFields();
+                  that.navBack();
+                }
+              }
+            });
+          },
+          error: function(oError) {
+            MessageToast.show("Error creating milestone.");
+            console.error("Error creating milestone:", oError);
+          }
         });
-       
+      },
+      onCancel: function() {
+        var that = this;
+        MessageBox.confirm(
+          "Are you sure you want to cancel? Unsaved changes will be lost.",
+          {
+            title: "Confirm Cancel",
+            actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+            onClose: function(oAction) {
+              if (oAction === MessageBox.Action.YES) {
+                 that.clearFields();
+                that.navBack();
+              }
+            }
+          }
+        );
+      },
+      navBack: function() {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("Milestones", {}, true);
       }
     });
   }

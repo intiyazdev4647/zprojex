@@ -19,16 +19,16 @@
                                 vertical="true"
                                 focusable="false">
 
-                                <List id="projectsList"
-                                    items="{projectsModel>/projects}"
-                                    mode="None"
-                                    showSeparators="All">
+                                    <List id="projectsList"
+                                        items="{projectsModel>/projects}"
+                                        mode="SingleSelectMaster"  itemPress=".onProjectPress"
+                                         >
 
-                                    <StandardListItem
-                                        title="{projectsModel>ProjectName}" description="{projectsModel>Description}"
-                                        icon="sap-icon://activity-2" press="onProjectPress"/>
+                                        <StandardListItem type="Navigation"
+                                            title="{projectsModel>ProjectName}" description="{projectsModel>Description}"
+                                            icon="sap-icon://activity-2" />
 
-                                </List>
+                                    </List>
 
                             </ScrollContainer>
                         </f:content>
@@ -46,13 +46,13 @@
 
                                 <List id="milestonesList"
                                     items="{projectsModel>/milestones}"
-                                    mode="None"
+                                    itemPress="onMilestonePress"
                                     showSeparators="All">
 
-                                    <StandardListItem
+                                    <StandardListItem type="Navigation"
                                         title="{projectsModel>Name}"
                                         description="{projectsModel>Project}"
-                                        icon="sap-icon://flag-2" press="onMilestonePress"/>
+                                        icon="sap-icon://goal" />
                                 </List>
 
                             </ScrollContainer>
@@ -69,14 +69,14 @@
                                 vertical="true"
                                 focusable="false">
 
-                                <List
+                                <List id="tasksList"
                                     items="{projectsModel>/tasks}"
                                     mode="None"
                                     showSeparators="All">
                                 <StandardListItem
-                                    title="{projectsModel>title}"
-                                    description="{projectsModel>project}"
-                                    info="{projectsModel>priority}"
+                                    title="{projectsModel>TaskName}"
+                                    description="{projectsModel>Description}"
+                                    info="Priority - {projectsModel>Priority}"
                                     icon="sap-icon://task" press="onTaskPress" />
                                 </List>
 

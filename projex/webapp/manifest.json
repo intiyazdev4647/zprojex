@@ -59,7 +59,7 @@
   "sap.ui5": {
     "flexEnabled": false,
     "dependencies": {
-      "minUI5Version": "1.71.70",
+      "minUI5Version": "1.71.64",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {}
@@ -129,6 +129,13 @@
           ]
         },
         {
+          "name": "DisplayProject",
+          "pattern": "projects/display/{projectID}",
+          "target": [
+            "TargetDisplayProject"
+          ]
+        },
+        {
           "name": "Milestones",
           "pattern": "milestones",
           "target": [
@@ -150,6 +157,13 @@
           ]
         },
         {
+          "name": "DisplayMilestone",
+          "pattern": "milestones/display/{milestoneName}",
+          "target": [
+            "TargetDisplayMilestone"
+          ]
+        },
+        {
           "name": "Tasks",
           "pattern": "tasks",
           "target": [
@@ -161,6 +175,13 @@
           "pattern": "tasks/create",
           "target": [
             "TargetCreateTask"
+          ]
+        },
+        {
+          "name": "EditTask",
+          "pattern": "tasks/edit/{taskID}",
+          "target": [
+            "TargetEditTask"
           ]
         },
         {
@@ -191,6 +212,10 @@
           "viewId": "editProject",
           "viewName": "EditProject"
         },
+        "TargetDisplayProject": {
+          "viewId": "DisplayProject",
+          "viewName": "DisplayProject"
+        },
         "TargetMilestones": {
           "viewId": "milestones",
           "viewName": "Milestones"
@@ -203,6 +228,10 @@
           "viewId": "createmilestone",
           "viewName": "CreateMilestone"
         },
+        "TargetDisplayMilestone": {
+          "viewId": "DisplayMilestone",
+          "viewName": "DisplayMilestone"
+        },
         "TargetTasks": {
           "viewId": "tasks",
           "viewName": "Tasks"
@@ -210,6 +239,10 @@
         "TargetCreateTask": {
           "viewId": "createtask",
           "viewName": "CreateTask"
+        },
+        "TargetEditTask": {
+          "viewId": "edittask",
+          "viewName": "EditTask"
         },
         "TargetTimelogs": {
           "viewId": "timelogs",
