@@ -35,8 +35,10 @@
                     <Input  editable="false" width="50%" value="{projectModel>/Site}"></Input>
                     <Label text="Email" ></Label>
                     <Input editable="false"  width="50%" value="{projectModel>/Email}"></Input>
+                    <Label text="Country Code" ></Label>
+                    <Input editable="false"  width="50%" value="{projectModel>/CountryCode}"></Input>
                     <Label text="Phone Number" ></Label>
-                    <Input  editable="false" width="50%" value="{projectModel>/CountryCode} {projectModel>/MobilePhone}"></Input>
+                    <Input  editable="false" width="50%" value="{projectModel>/MobilePhone}"></Input>
                     <Label text="Business Project Manager" ></Label>
                     <Input  editable="false" width="50%" value="{projectModel>/BusProjMngr}"></Input>
 

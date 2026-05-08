@@ -26,9 +26,9 @@
                         </items>
                     </ComboBox>
                     <Label text="Owner" required="true"></Label>
-                    <ComboBox  items="{projectsModel>/Owners}" selectedKey="{projectModel>/Owner}" width="50%" change="onSelectOwner">
+                    <ComboBox  items="{dropdownModel>/Owners}" loadItems="loadOwnersData" selectedKey="{projectModel>/Owner}" width="50%" change="onSelectOwner">
                         <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
+                            <core:Item text="{dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
                         </items>
                     </ComboBox>
                     <Label text="Start Date" required="true" ></Label>
@@ -42,9 +42,9 @@
                                     pattern: 'dd-MM-yyyy'
                                 } }" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="Business Owner"></Label>
-                    <ComboBox  width="50%" items="{projectsModel>/BusProjMngrs}" selectedKey="{projectModel>/BusinessOwner}" change="onSelectBOwner"  >
+                    <ComboBox  width="50%" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" selectedKey="{projectModel>/BusinessOwner}" change="onSelectBOwner"  >
                         <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
+                            <core:Item text="{dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
                         </items>
                     </ComboBox>
                 </form:content>

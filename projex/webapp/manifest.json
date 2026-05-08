@@ -24,6 +24,15 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "ZCA_TRACKER_SRV": {
+        "uri": "/sap/opu/odata/sap/ZCA_TRACKER_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/ZCA_TRACKER_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     },
     "crossNavigation": {
@@ -78,6 +87,11 @@
       },
       "": {
         "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "ZCA_TRACKER_SRV": {
+        "dataSource": "ZCA_TRACKER_SRV",
         "preload": true,
         "settings": {}
       }

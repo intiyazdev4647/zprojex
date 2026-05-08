@@ -17,28 +17,28 @@
                         </items>
                     </ComboBox>
                     <Label text="Milestone" required="true"></Label>
-                    <Input id="inpMilestone" width="50%"></Input>
+                    <Input visible="{milestone>/visible}" id="inpMilestone" change="milestoneChange" width="50%"></Input>
                     <Label text="Flag" required="true"></Label>
-                    <ComboBox id="flagCB" change="onSelectFlag" width="50%">
+                    <ComboBox visible="{milestone>/visible}" id="flagCB" change="onSelectFlag" width="50%">
                         <items>
                             <core:Item text="Internal" key="I"></core:Item>
                             <core:Item text="External" key="E"></core:Item>
                         </items>
                     </ComboBox>
                     <Label text="Owner" required="true"></Label>
-                    <ComboBox id="ownerCB" items="{projectsModel>/Owners}" width="50%" change="onSelectOwner">
+                    <ComboBox visible="{milestone>/visible}" id="ownerCB" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" width="50%" change="onSelectOwner">
                         <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
+                            <core:Item text="{dropdownModel>key} - {dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
                         </items>
                     </ComboBox>
                     <Label text="Start Date" required="true"></Label>
-                    <DatePicker id="sDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
+                    <DatePicker visible="{milestone>/visible}" id="sDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="End Date" ></Label>
-                    <DatePicker id="eDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
+                    <DatePicker visible="{milestone>/visible}" id="eDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="Business Owner"></Label>
-                    <ComboBox id="businessOwnerCB" width="50%" items="{projectsModel>/BusProjMngrs}" change="onSelectBOwner"  >
+                    <ComboBox visible="{milestone>/visible}" id="businessOwnerCB" width="50%" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" change="onSelectBOwner"  >
                         <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
+                            <core:Item text="{dropdownModel>key} - {dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
                         </items>
                     </ComboBox>
                 </form:content>

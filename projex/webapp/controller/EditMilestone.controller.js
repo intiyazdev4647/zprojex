@@ -17,6 +17,7 @@ sap.ui.define(
       },
       _onRouteMatched: function(oEvent) {
         // Clear input fields when the route is matched
+        this.loadOwnersData();
         this.getView().setBusy(true);
         this.loadProjectsData();
         let milestoneName = oEvent.getParameter("arguments").milestoneName;
@@ -34,7 +35,7 @@ sap.ui.define(
           },
           error: function(oError) {
             var oModel = that.getView().getModel("projectModel");
-            if(oModel) {
+            if (oModel) {
               oModel.setData({});
             }
             that.getView().setBusy(false);
@@ -88,23 +89,51 @@ sap.ui.define(
       },
       onSaveMilestone: function() {
         const oModel = this.getView().getModel();
+
         var that = this;
-        const payload = this.getView().getModel("projectModel").getData();
+
+        const payload = Object.assign(
+          {},
+          this.getView().getModel("projectModel").getData()
+        );
+
+        // Prevent timezone/date shift issue
+        // Replace "StartDate" and "EndDate"
+        // with your actual date field names
+
+        if (payload.StartDate) {
+          payload.StartDate = new Date(payload.StartDate);
+
+          payload.StartDate.setHours(12, 0, 0, 0);
+        }
+
+        if (payload.EndDate) {
+          payload.EndDate = new Date(payload.EndDate);
+
+          payload.EndDate.setHours(12, 0, 0, 0);
+        }
+
         console.log("Payload for update:", payload);
+
         oModel.update("/MilestonesSet('" + payload.Name + "')", payload, {
           success: function() {
-           MessageBox.success("Milestone updated successfully!", {
-                title: "Success",
-                actions: [MessageBox.Action.OK],
-                    onClose: function(oAction) {
-                        if (oAction === MessageBox.Action.OK) {
-                            that.navBack();
-                        }
+            sap.m.MessageBox.success("Milestone updated successfully!", {
+              title: "Success",
+
+              actions: [sap.m.MessageBox.Action.OK],
+
+              onClose: function(oAction) {
+                if (oAction === sap.m.MessageBox.Action.OK) {
+                  that.navBack();
                 }
-           });
+              }
+            });
           },
+
           error: function(oError) {
             console.error("Error while Updating Milestones:", oError);
+
+            sap.m.MessageBox.error("Error while updating milestone");
           }
         });
       },
@@ -122,6 +151,31 @@ sap.ui.define(
             }
           }
         );
+      },
+      loadOwnersData: function() {
+        var oModel = this.getOwnerComponent().getModel();
+        var that = this;
+        oModel.read("/DropdownSet", {
+          urlParameters: {
+            $filter: "EntitySet eq 'ProjectsSet'"
+          },
+          success: function(oData) {
+            if (oData && oData.results) {
+              var Owners = oData.results
+                .filter(item => item.Code === "Owner")
+                .map(item => ({ text: item.ValText, key: item.DomVal }));
+
+              var oJsonModel = new JSONModel({
+                Owners: Owners
+              });
+              that.getView().setModel(oJsonModel, "dropdownModel");
+              // console.log("Dropdown data:", oJsonModel.getData());
+            }
+          },
+          error: function(oError) {
+            console.error("Error while reading Owners:", oError);
+          }
+        });
       },
       navBack: function() {
         var oRouter = this.getOwnerComponent().getRouter();

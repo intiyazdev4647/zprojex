@@ -33,6 +33,9 @@ server:
           - path: /sap
             url: https://fioridev.ennovi.com:44310
             client: '800'
+          - path: /sap/opu/odata/sap/ZCA_TRACKER_SRV/
+            url: https://fioridev.ennovi.com:44310
+            client: '800'
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
@@ -41,5 +44,9 @@ server:
           - urlPath: /sap/opu/odata/sap/ZCA_PROJEX_SRV
             metadataPath: ./webapp/localService/mainService/metadata.xml
             mockdataPath: ./webapp/localService/mainService/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZCA_TRACKER_SRV
+            metadataPath: ./webapp/localService/ZCA_TRACKER_SRV/metadata.xml
+            mockdataPath: ./webapp/localService/ZCA_TRACKER_SRV/data
             generateMockData: true
         annotations: []

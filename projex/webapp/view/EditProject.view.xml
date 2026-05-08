@@ -14,7 +14,11 @@
                     <Label text="Project Name" required="true"></Label>
                     <Input  width="50%" value="{projectModel>/ProjectName}"></Input>
                     <Label text="Project Owner" required="true"></Label>
-                    <Input  width="50%" value="{projectModel>/Owner}"></Input>
+                    <MultiComboBox  items="{dropdownModel>/Owners}" busyIndicatorDelay="1000" selectedKeys="{projectModel>/Owner}"  loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Project Description" required="true"></Label>
                     <Input  width="50%" value="{projectModel>/Description}"></Input>
                     <Label text="Start Date" required="true"></Label>
@@ -30,17 +34,23 @@
                                     pattern: 'dd-MM-yyyy'
                                 }}" displayFormat="yyyy/MM/dd" valueFormat="yyyy-MM-dd" ></DatePicker>
                     <Label text="Department" required="true"></Label>
-                    <Input  width="50%" value="{projectModel>/Department}"></Input>
+                    <MultiComboBox  items="{dropdownModel>/Departments}" busyIndicatorDelay="1000" selectedKeys="{projectModel>/Department}" loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Site" required="true"></Label>
-                    <Input  width="50%" value="{projectModel>/Site}"></Input>
+                    <MultiComboBox  items="{dropdownModel>/Sites}" busyIndicatorDelay="1000" selectedKeys="{projectModel>/Site}" loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}"  text="{dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Email" ></Label>
                     <Input  width="50%" value="{projectModel>/Email}"></Input>
                     <Label text="Country Code" ></Label>
-                    <ComboBox width="50%" selectedKey="{projectModel>/CountryCode}" >
+                    <ComboBox  busyIndicatorDelay="1000"  items="{dropdownModel>/CountryCodes}" selectedKey="{projectModel>/CountryCode}" loadItems="loadDropDownData" width="50%" >
                         <items>
-                            <core:Item key="+91" text="+91 - United States"/>
-                            <core:Item key="+1" text="+1 - Canada"/>
-                            <core:Item key="+44" text="+44 - United Kingdom"/>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>text}"/>
                         </items>
                     </ComboBox>
                     <Label text="Phone Number" ></Label>

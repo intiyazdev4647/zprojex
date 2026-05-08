@@ -12,15 +12,52 @@ sap.ui.define(
       onInit: function() {
         //    this.getView().setModel(models.projectsModel(), "projectsModel");
         this.loadProjectsData();
+        var oMilestoneModel = new sap.ui.model.json.JSONModel({
+          visible: false
+        });
+
+        this.getView().setModel(oMilestoneModel, "milestone");
         this.getOwnerComponent()
           .getRouter()
           .getRoute("CreateMilestone")
           .attachPatternMatched(this._onRouteMatched, this);
       },
       _onRouteMatched: function(oEvent) {
-        // Clear input fields when the route is matched
         this.clearFields();
       },
+      onSelectProject: function(oEvent) {
+        var sSelectedKey = oEvent.getSource().getSelectedKey();
+
+        var oMilestoneModel = this.getView().getModel("milestone");
+
+        oMilestoneModel.setProperty("/visible", !!sSelectedKey);
+      },
+      loadOwnersData: function() {
+        var oModel = this.getOwnerComponent().getModel();
+        var that = this;
+        oModel.read("/DropdownSet", {
+          urlParameters: {
+            $filter: "EntitySet eq 'ProjectsSet'"
+          },
+          success: function(oData) {
+            if (oData && oData.results) {
+              var Owners = oData.results
+                .filter(item => item.Code === "Owner")
+                .map(item => ({ text: item.ValText, key: item.DomVal }));
+
+              var oJsonModel = new JSONModel({
+                Owners: Owners
+              });
+              that.getView().setModel(oJsonModel, "dropdownModel");
+              // console.log("Dropdown data:", oJsonModel.getData());
+            }
+          },
+          error: function(oError) {
+            console.error("Error while reading Owners:", oError);
+          }
+        });
+      },
+
       clearFields: function() {
         this.getView().byId("idProjCB").setSelectedKey("");
         this.getView().byId("inpMilestone").setValue("");
@@ -66,44 +103,91 @@ sap.ui.define(
         });
       },
       onCreateMilestone: function() {
-        var oModel = this.getOwnerComponent().getModel();
         var that = this;
-        var project = this.getView().byId("idProjCB").getSelectedKey();
-        var milestone = this.getView().byId("inpMilestone").getValue();
-        var flag = this.getView().byId("flagCB").getSelectedKey();
-        var owner = this.getView().byId("ownerCB").getSelectedKey();
-        var sDate = this.getView().byId("sDate").getDateValue();
-        var eDate = this.getView().byId("eDate").getDateValue();
-        var businessOwner = this.getView()
-          .byId("businessOwnerCB")
-          .getSelectedKey();
+
+        var oView = this.getView();
+
+        var oModel = this.getOwnerComponent().getModel();
+
+        var project = oView.byId("idProjCB").getSelectedKey();
+
+        var milestone = oView.byId("inpMilestone").getValue().trim();
+
+        var flag = oView.byId("flagCB").getSelectedKey();
+
+        var owner = oView.byId("ownerCB").getSelectedKey();
+
+        var sDate = oView.byId("sDate").getDateValue();
+
+        var eDate = oView.byId("eDate").getDateValue();
+
+        var businessOwner = oView.byId("businessOwnerCB").getSelectedKey();
+
+        // Mandatory validation
+        if (!project || !milestone || !flag || !owner || !sDate) {
+          sap.m.MessageBox.error("Please fill all required fields");
+
+          return;
+        }
+
+        // Date validation
+        if (eDate && eDate < sDate) {
+          sap.m.MessageBox.error("End Date cannot be before Start Date");
+
+          return;
+        }
+
+        // Prevent timezone shift
+        if (sDate) {
+          sDate = new Date(sDate);
+
+          sDate.setHours(12, 0, 0, 0);
+        }
+
+        if (eDate) {
+          eDate = new Date(eDate);
+
+          eDate.setHours(12, 0, 0, 0);
+        }
 
         var payload = {
           Project: project,
+
           Name: milestone,
+
           Flag: flag,
+
           Owner: owner,
-          StartDate: "/Date(" + new Date(sDate).getTime() + ")/",
-          EndDate: "/Date(" + new Date(eDate).getTime() + ")/",
-          businessOwner: businessOwner
+
+          StartDate: sDate,
+
+          EndDate: eDate,
+
+          BusinessOwner: businessOwner
         };
+
         console.log("Payload for Milestone Creation:", payload);
-        var oModel = this.getOwnerComponent().getModel();
+
         oModel.create("/MilestonesSet", payload, {
           success: function() {
-            MessageBox.success("Milestone created successfully!",{
+            sap.m.MessageBox.success("Milestone created successfully!", {
               title: "Success",
-              actions: [MessageBox.Action.OK],
+
+              actions: [sap.m.MessageBox.Action.OK],
+
               onClose: function(sAction) {
-                if (sAction === MessageBox.Action.OK) {
+                if (sAction === sap.m.MessageBox.Action.OK) {
                   that.clearFields();
+
                   that.navBack();
                 }
               }
             });
           },
+
           error: function(oError) {
-            MessageToast.show("Error creating milestone.");
+            sap.m.MessageToast.show("Error creating milestone.");
+
             console.error("Error creating milestone:", oError);
           }
         });
@@ -117,13 +201,38 @@ sap.ui.define(
             actions: [MessageBox.Action.YES, MessageBox.Action.NO],
             onClose: function(oAction) {
               if (oAction === MessageBox.Action.YES) {
-                 that.clearFields();
+                that.clearFields();
                 that.navBack();
               }
             }
           }
         );
       },
+      // milestoneChange: function(oEvent) {
+      //   var oInput = oEvent.getSource();
+      //   var sValue = oInput.getValue().trim();
+
+      //   // If empty, remove error state
+      //   if (!sValue) {
+      //     oInput.setValueState("None");
+      //     return;
+      //   }
+
+      //   // Allows:
+      //   // letters, numbers, hyphen (-), underscore (_)
+      //   // length: 5 to 20
+      //   // no spaces
+      //   var oRegExp = /^[a-zA-Z0-9_-]{5,20}$/;
+
+      //   if (!oRegExp.test(sValue)) {
+      //     oInput.setValueState("Error");
+      //     oInput.setValueStateText(
+      //       "Milestone Name must be 5-20 characters and can contain letters, numbers, hyphen (-), and underscore (_)"
+      //     );
+      //   } else {
+      //     oInput.setValueState("None");
+      //   }
+      // },
       navBack: function() {
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter.navTo("Milestones", {}, true);

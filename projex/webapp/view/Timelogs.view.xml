@@ -1,151 +1,237 @@
-<mvc:View controllerName="com.ennovi.projex.controller.Timelogs"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns:rowmodes="sap.ui.table.rowmodes"
+<mvc:View
+    controllerName="com.ennovi.projex.controller.Timelogs"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:t="sap.ui.table"
     xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form"
     displayBlock="true">
-    
-    <Page title="Timelogs" showHeader="false" class="sapUiTinyMarginTop">
-        <content>
-             <Panel >
-            <t:Table
-            id="timelogsTable" enableColumnReordering="true"  rows="{projectsModel>/timelogs}"
-            fixedColumnCount="1" width="100%"  noData="No Records Found"
-            selectionMode="Single" alternateRowColors="true" rowActionCount="10" 
-            selectionBehavior="RowOnly" visibleRowCount="16" visibleRowCountMode="Fixed">
-           
-            <!-- HEADER TOOLBAR -->
-            <t:extension>
-                <OverflowToolbar>
 
-                    <Title text="All Time Logs"/>
-                    <ToolbarSpacer/>
+    <Page title="Time Logs" class="sapUiContentPadding">
 
-                    <SearchField
-                        width="250px"
-                        search=".onSearch"
-                        placeholder="Search timelog..."
-                        class="sapUiSmallMarginEnd"/>
+        <!-- HEADER BAR -->
+        <subHeader>
+            <Toolbar>
+                <Title text="Time Logs"/>
+                <ToolbarSpacer/>
 
+                <HBox alignItems="Center" justifyContent="Center">
+
+                    <!-- Previous -->
                     <Button
-                        text="Add Time Log"
-                        icon="sap-icon://add"
-                        type="Emphasized"
-                        press=".onAddTimeLog"
-                        class="sapUiTinyMarginEnd"/>
+                        icon="sap-icon://navigation-left-arrow"
+                        type="Transparent"
+                        press=".onPrevWeek"/>
 
-                    <Button
-                        icon="sap-icon://filter"
-                        press=".onFilterPress"
-                        class="sapUiTinyMarginEnd"/>
+                    <!-- Date Range Picker -->
+                    <DateRangeSelection
+                        id="dateRange"
+                        width="100%" value="{projectsModel>/currentWeekText}"
+                        displayFormat="dd/MM/yyyy"
+                        valueFormat="dd/MM/yyyy" maxDate="{projectsModel>/weekEnd}"
+                        delimiter=" to "
+                        class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
 
-                    <Button
-                        text="Clear"
-                        press=".onClear"/>
+                    <!-- Week Text -->
+                    <!-- <Text
+                        text="{projectsModel>/currentWeekText}"
+                        class="sapUiTinyMarginEnd"/> -->
 
-                </OverflowToolbar>
-            </t:extension>
+                    <!-- Next -->
+                    <Button class="sapUiSmallMarginBegin"
+                        icon="sap-icon://navigation-right-arrow"
+                        type="Transparent"
+                        press=".onNextWeek"/>
 
-            <!-- ALL COLUMNS -->
-            <t:columns>
-                <!-- ID -->
-                <t:Column width="100px">
-                    <Label text="ID"/>
-                    <t:template>
-                        <Link text="{projectsModel>ID}"/>
-                    </t:template>
-                </t:Column>
-                <!-- Log Title -->
-                <t:Column width="150px">
-                    <Label text="Log Title"/>
-                    <t:template>
-                        <Link text="{projectsModel>logTitle}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Project -->
-                <t:Column >
-                    <Label text="Project"/>
-                    <t:template>
-                        <Text text="{projectsModel>Project}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Daily Log Hours -->
-                <t:Column >
-                    <Label text="Daily Log Hours"/>
-                    <t:template>
-                        <Text text="{projectsModel>dailyLogHours}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- User -->
-                <t:Column >
-                    <Label text="User"/>
-                    <t:template>
-                        <Text text="{projectsModel>user}"/>
-                    </t:template>
-                </t:Column>
-
-                <!-- Notes -->
-                <t:Column >
-                    <Label text="Notes"/>
-                    <t:template>
-                        <TextArea value="{projectsModel>notes}"/>
-                    </t:template>
-                </t:Column>
+                </HBox>
+                <ToolbarSpacer/>
 
                 
 
-                <!-- Date Time -->
-                <t:Column >
-                    <Label text="Date Time"/>
-                    <t:template>
-                        <!-- <DatePicker
-                            value="{startdate}"
-                            displayFormat="dd-MM-yyyy"/> -->
-                        <Text text="{projectsModel>dateTime}"></Text>
-                    </t:template>
-                </t:Column>
+                <Button
+                    text="Add Time Log"
+                    icon="sap-icon://add"
+                    type="Emphasized"
+                    press=".onAddTimeLog"
+                    class="sapUiTinyMarginEnd"/>
 
-                <!-- Created Time -->
-                <t:Column >
-                    <Label text="Created Time"/>
-                    <t:template>
-                        <!-- <DatePicker
-                            value="{enddate}"
-                            displayFormat="dd-MM-yyyy"/> -->
-                         <Text text="{projectsModel>createdTime}"></Text>
-                    </t:template>
-                </t:Column>
-                <!-- Last modified Time -->
-                <t:Column >
-                    <Label text="Last modified Time"/>
-                    <t:template>
-                        <!-- <DatePicker
-                            value="{enddate}"
-                            displayFormat="dd-MM-yyyy"/> -->
-                         <Text text="{projectsModel>lastModifiedTime}"></Text>
-                    </t:template>
-                </t:Column>
-                <!-- Plant -->
-                <t:Column >
-                    <Label text="Plant"/>
-                    <t:template>
-                         <Text text="{projectsModel>plant}"></Text>
-                    </t:template>
-                </t:Column>
-                <!-- Billing Type -->
-                <t:Column >
-                    <Label text="Billing Type"/>
-                    <t:template>
-                         <Text text="{projectsModel>billingType}"></Text>
-                    </t:template>
-                </t:Column>
-            </t:columns>
-        </t:Table>
-        </Panel>
+                <Button
+                    icon="sap-icon://filter"
+                    press=".onFilterPress"
+                    class="sapUiTinyMarginEnd"/>
+
+                <Button
+                    text="Clear"
+                    press=".onClear"/>
+            </Toolbar>
+        </subHeader>
+
+        <content>
+
+            <!-- TREE TABLE (GROUPED BY DATE) -->
+            <t:TreeTable
+                id="timelogsTable"
+                rows="{
+                    path: 'projectsModel>/timelogs',
+                    parameters: { arrayNames: ['children'] }
+                }"  fixedColumnCount="2"
+                selectionMode="None" 
+                visibleRowCount="15"
+                alternateRowColors="true"
+                enableColumnReordering="true"
+                noData="No Records Found">
+
+                <!-- COLUMNS -->
+                <t:columns>
+
+                    <!-- 1. ID -->
+                    <t:Column width="120px">
+                        <Label text="ID"/>
+                        <t:template>
+                            <Text text="{projectsModel>ID}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 2. LOG TITLE / DATE -->
+                    <t:Column width="260px">
+                        <Label text="Log Title / Date"/>
+                        <t:template>
+                            <VBox>
+
+                                <!-- DATE (GROUP ROW) -->
+                                <ObjectStatus
+                                    icon="sap-icon://date-time"
+                                    text="{
+                                        path: 'projectsModel>date',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: { pattern: 'dd/MM/yyyy' }
+                                    }"
+                                    visible="{= ${projectsModel>isGroup} === true }"/>
+
+                                <!-- LOG TITLE (CHILD ROW) -->
+                                <Text
+                                    text="{projectsModel>logTitle}"
+                                    visible="{projectsModel>isGroup}"/>
+
+                            </VBox>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 3. PROJECT -->
+                    <t:Column width="200px">
+                        <Label text="Project"/>
+                        <t:template>
+                            <Text text="{projectsModel>project}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 4. DAILY LOG HOURS -->
+                    <t:Column width="150px" hAlign="Center">
+                        <Label text="Daily Log Hours"/>
+                        <t:template>
+                            <Text text="{projectsModel>hours}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 5. USER -->
+                    <t:Column width="180px">
+                        <Label text="User"/>
+                        <t:template>
+                            <Text text="{projectsModel>user}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 6. NOTES -->
+                    <t:Column width="220px">
+                        <Label text="Notes"/>
+                        <t:template>
+                            <Text text="{projectsModel>notes}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 7. DATE TIME -->
+                    <t:Column width="180px">
+                        <Label text="Date Time"/>
+                        <t:template>
+                            <Text
+                                text="{
+                                    path: 'projectsModel>dateTime',
+                                    type: 'sap.ui.model.type.DateTime',
+                                    formatOptions: { pattern: 'dd/MM/yyyy HH:mm' }
+                                }"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 8. CREATED TIME -->
+                    <t:Column width="180px">
+                        <Label text="Created Time"/>
+                        <t:template>
+                            <Text
+                                text="{
+                                    path: 'projectsModel>createdTime',
+                                    type: 'sap.ui.model.type.DateTime',
+                                    formatOptions: { pattern: 'dd/MM/yyyy HH:mm' }
+                                }"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 9. LAST MODIFIED TIME -->
+                    <t:Column width="200px">
+                        <Label text="Last Modified Time"/>
+                        <t:template>
+                            <Text
+                                text="{
+                                    path: 'projectsModel>modifiedTime',
+                                    type: 'sap.ui.model.type.DateTime',
+                                    formatOptions: { pattern: 'dd/MM/yyyy HH:mm' }
+                                }"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 10. PLANT -->
+                    <t:Column width="140px">
+                        <Label text="Plant"/>
+                        <t:template>
+                            <Text text="{projectsModel>plant}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- 11. BILLING TYPE -->
+                    <t:Column width="140px">
+                        <Label text="Billing Type"/>
+                        <t:template>
+                            <ObjectStatus
+                                text="{projectsModel>billingType}"
+                                state="Success"/>
+                        </t:template>
+                    </t:Column>
+
+                </t:columns>
+
+            </t:TreeTable>
+
         </content>
+
+        <!-- FOOTER (TOTALS LIKE YOUR FIRST IMAGE) -->
+        <footer>
+            <Toolbar>
+
+                <Text text="Billable"/>
+                <Text text="{projectsModel>/totalBillable}" class="sapUiTinyMarginEnd"/>
+
+                <Text text="Non Billable"/>
+                <Text text="{projectsModel>/totalNonBillable}" class="sapUiTinyMarginEnd"/>
+
+                <Text text="Total"/>
+                <Text text="{projectsModel>/totalHours}"/>
+
+                <ToolbarSpacer/>
+
+                <Text text="Total Count:"/>
+                <Text text="{projectsModel>/count}"/>
+
+            </Toolbar>
+        </footer>
+
     </Page>
-    
+
 </mvc:View>

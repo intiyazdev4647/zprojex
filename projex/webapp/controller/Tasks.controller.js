@@ -101,7 +101,7 @@ sap.ui.define(
           );
         }
         this._pDialog.then(function(oDialog) {
-          oDialog.setModel(oView.getModel("filterModel"), "filterModel");
+          oView.addDependent(oDialog);
           oDialog.open();
           oView.setBusy(false);
         });

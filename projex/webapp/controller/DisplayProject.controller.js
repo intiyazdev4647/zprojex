@@ -35,6 +35,7 @@ sap.ui.define(
               }
             });
         },
+        
       onBack: function() {
         this.getOwnerComponent().getRouter().navTo("Home");
       }

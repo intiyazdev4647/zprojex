@@ -14,7 +14,11 @@
                     <Label text="Project Name" required="true"></Label>
                     <Input id="inpProjName" width="50%"></Input>
                     <Label text="Project Owner" required="true"></Label>
-                    <Input id="inpProjOwner" width="50%"></Input>
+                    <MultiComboBox id="inpProjOwner" items="{dropdownModel>/Owners}" busyIndicatorDelay="1000"  loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Project Description" required="true"></Label>
                     <Input id="inpProjDesc" width="50%"></Input>
                     <Label text="Start Date" required="true"></Label>
@@ -22,16 +26,24 @@
                     <Label text="End Date"></Label>
                     <DatePicker id="endD" width="50%" value="" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
                     <Label text="Department" required="true"></Label>
-                    <Input id="idDepartment" width="50%" ></Input>
+                    <MultiComboBox id="idDepartment" items="{dropdownModel>/Departments}" busyIndicatorDelay="1000"  loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Site" required="true"></Label>
-                    <Input id="idSite" width="50%" ></Input>
+                    <MultiComboBox id="idSite" items="{dropdownModel>/Sites}" busyIndicatorDelay="1000"  loadItems="loadDropDownData" width="50%">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                        </items>
+                    </MultiComboBox>
                     <Label text="Email" ></Label>
                     <Input id="idEmail" width="50%" ></Input>
                     <Label text="Country Code"></Label>
-                    <ComboBox id="countryCodeCB" width="50%" selectedItem="+91">
-                        <core:Item key="+91" text="+91 - India"/>
-                        <core:Item key="+1" text="+1 - United States"/>
-                        <core:Item key="+44" text="+44 - United Kingdom"/>
+                    <ComboBox id="countryCodeCB" busyIndicatorDelay="1000"  items="{dropdownModel>/CountryCodes}" loadItems="loadDropDownData" width="50%" selectedItem="+91 - India">
+                        <items>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                        </items>
                     </ComboBox>
                     <Label text="Phone Number" ></Label>
                     <Input id="idPhone" width="50%" ></Input>

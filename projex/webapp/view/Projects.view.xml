@@ -5,8 +5,7 @@
 	xmlns:core="sap.ui.core" controllerName="com.ennovi.projex.controller.Projects" displayBlock="true" height="100%">
 	<Page title="Projects" showHeader="false" enableScrolling="false" class="sapUiTinyMarginTop">
 		<content>
-			<Panel>
-				<t:Table id="mainprojectsTable" rows="{projectsModel>/projects}" fixedColumnCount="2" width="100%" selectionMode="Single" ariaLabelledBy="title" visibleRowCount="16" visibleRowCountMode="Fixed" alternateRowColors="true">
+			<t:Table class="sapUiSmallMargin" id="mainprojectsTable" rows="{projectsModel>/projects}" fixedColumnCount="2" width="auto" selectionMode="Single" ariaLabelledBy="title"  visibleRowCountMode="Auto" alternateRowColors="true">
 					<t:extension>
 						<OverflowToolbar>
 							<Title text="All Projects"/>
@@ -38,7 +37,7 @@
 							</t:template>
 						</t:Column>
 						<!--  Owner  -->
-						<t:Column width="120px">
+						<t:Column width="200px">
 							<Label text="Owner"/>
 							<t:template>
 								<Text text="{projectsModel>Owner}"/>
@@ -147,7 +146,6 @@
 						<!--  <t:Column width="120px"><Label text="Phone No."/><t:template><Text text="{projectsModel>businessPNo}"/></t:template></t:Column>  -->
 					</t:columns>
 				</t:Table>
-			</Panel>
 		</content>
 	</Page>
 </mvc:View>

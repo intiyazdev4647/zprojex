@@ -19,6 +19,9 @@ server:
           - path: /sap
             url: https://fioridev.ennovi.com:44310
             client: '800'
+          - path: /sap/opu/odata/sap/ZCA_TRACKER_SRV/
+            url: https://fioridev.ennovi.com:44310
+            client: '800'
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
