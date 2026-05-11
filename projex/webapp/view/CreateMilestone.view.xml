@@ -1,58 +1,201 @@
-<mvc:View xmlns:form="sap.ui.layout.form" xmlns:rowmodes="sap.ui.table.rowmodes" controllerName="com.ennovi.projex.controller.CreateMilestone"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table"
+<mvc:View
+    controllerName="com.ennovi.projex.controller.CreateMilestone"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
     displayBlock="true">
-    
-    <Page title="Create Milestone" showHeader="false" >
+
+    <Page
+        title="Create Milestone"
+        showHeader="false">
+
         <content>
-           <Panel >
-            <form:SimpleForm editable="true">
-                <form:content>
-                    <Label text="Project" required="true"></Label>
-                    <!-- <Input id="inpProject"></Input> -->
-                    <ComboBox id="idProjCB" width="50%" items="{projectsModel>/Projects}" change="onSelectProject">
-                        <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Milestone" required="true"></Label>
-                    <Input visible="{milestone>/visible}" id="inpMilestone" change="milestoneChange" width="50%"></Input>
-                    <Label text="Flag" required="true"></Label>
-                    <ComboBox visible="{milestone>/visible}" id="flagCB" change="onSelectFlag" width="50%">
-                        <items>
-                            <core:Item text="Internal" key="I"></core:Item>
-                            <core:Item text="External" key="E"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Owner" required="true"></Label>
-                    <ComboBox visible="{milestone>/visible}" id="ownerCB" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" width="50%" change="onSelectOwner">
-                        <items>
-                            <core:Item text="{dropdownModel>key} - {dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Start Date" required="true"></Label>
-                    <DatePicker visible="{milestone>/visible}" id="sDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
-                    <Label text="End Date" ></Label>
-                    <DatePicker visible="{milestone>/visible}" id="eDate" value="" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
-                    <Label text="Business Owner"></Label>
-                    <ComboBox visible="{milestone>/visible}" id="businessOwnerCB" width="50%" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" change="onSelectBOwner"  >
-                        <items>
-                            <core:Item text="{dropdownModel>key} - {dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
-                        </items>
-                    </ComboBox>
-                </form:content>
-            </form:SimpleForm>
-           
-           </Panel>
+
+            <!-- Main Container -->
+            <VBox class="sapUiMediumMargin">
+
+                <!-- Top Form -->
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+
+                    <form:content>
+
+                        <Label
+                            text="Project"
+                            required="true" />
+
+                        <ComboBox
+                            id="idProjCB"
+                            width="80%" 
+                            items="{projectsModel>/Projects}"
+                            change="onSelectProject">
+
+                            <items>
+                                <core:Item
+                                    text="{projectsModel>}"
+                                    key="{projectsModel>}" />
+                            </items>
+
+                        </ComboBox>
+
+                        <Label
+                            text="Milestone"
+                            required="true" />
+
+                        <Input
+                            id="inpMilestone"
+                            width="80%"
+                            change="milestoneChange" />
+
+                    </form:content>
+
+                </form:SimpleForm>
+
+                <!-- Milestone Information Panel -->
+                <Panel
+                    headerText="Milestone Information"
+                    expandable="true"
+                    expanded="true"
+                    visible="{milestone>/visible}"
+                    class="sapUiMediumMarginTop">
+
+                    <form:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false">
+
+                        <form:content>
+
+                            <!-- Flag -->
+                            <Label
+                                text="Flag"
+                                required="true" />
+
+                            <ComboBox
+                                id="flagCB"
+                                width="80%"
+                                change="onSelectFlag">
+
+                                <items>
+                                    <core:Item text="Internal" key="I" />
+                                    <core:Item text="External" key="E" />
+                                </items>
+
+                            </ComboBox>
+
+                            <!-- Owner -->
+                            <Label
+                                text="Owner"
+                                required="true" />
+
+                            <ComboBox
+                                id="ownerCB"
+                                width="80%" selectedKey="{userModel>/id}"
+                                items="{dropdownModel>/Owners}" 
+                                loadItems="loadOwnersData"
+                                change="onSelectOwner">
+
+                                <items>
+                                    <core:Item 
+                                        text="{dropdownModel>text}" 
+                                        key="{dropdownModel>key}" />
+                                </items>
+
+                            </ComboBox>
+
+                            <!-- Start Date -->
+                            <Label
+                                text="Start Date"
+                                required="true" />
+
+                            <DatePicker
+                                id="sDate"
+                                width="80%"
+                                displayFormat="dd/MM/yyyy"
+                                valueFormat="dd/MM/yyyy" />
+
+                            <!-- End Date -->
+                            <Label text="End Date" />
+
+                            <DatePicker
+                                id="eDate"
+                                width="80%"
+                                displayFormat="dd/MM/yyyy"
+                                valueFormat="dd/MM/yyyy" />
+
+                            <!-- Business Owner -->
+                            <Label text="Business Owner" />
+
+                            <ComboBox
+                                id="businessOwnerCB"
+                                width="80%"
+                                items="{dropdownModel>/Owners}"
+                                loadItems="loadOwnersData"
+                                change="onSelectBOwner">
+
+                                <items>
+                                    <core:Item
+                                        text="{dropdownModel>text}"
+                                        key="{dropdownModel>key}" />
+                                </items>
+
+                            </ComboBox>
+
+                        </form:content>
+
+                    </form:SimpleForm>
+
+                </Panel>
+
+            </VBox>
+
         </content>
+
         <footer>
-            <Toolbar >
+
+            <Toolbar>
                 <ToolbarSpacer />
-                <Button text="Create" type="Emphasized" press="onCreateMilestone"/>
-                <Button text="Cancel" press="onCancel"/>
+
+                <Button
+                    text="Create"
+                    type="Emphasized"
+                    press="onCreateMilestone" />
+
+                <Button
+                    text="Cancel"
+                    press="onCancel" />
+
             </Toolbar>
+
         </footer>
+
     </Page>
-    
+
 </mvc:View>

@@ -1,64 +1,215 @@
-<mvc:View xmlns:form="sap.ui.layout.form" xmlns:rowmodes="sap.ui.table.rowmodes" controllerName="com.ennovi.projex.controller.EditMilestone"
-    xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table"
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    controllerName="com.ennovi.projex.controller.EditMilestone"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:t="sap.ui.table"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     displayBlock="true">
-    
-    <Page title="Edit Milestone" showNavButton="true" navButtonPress="navBack" showHeader="true" >
+
+    <Page
+        title="Edit Milestone"
+        showNavButton="true"
+        navButtonPress="navBack"
+        showHeader="true">
+
         <content>
-           <Panel >
-            <form:SimpleForm editable="true">
-                <form:content>
-                    <Label text="Project" required="true"></Label>
-                    <!-- <Input id="inpProject"></Input> -->
-                    <ComboBox  width="50%" items="{projectsModel>/Projects}" selectedKey="{projectModel>/Project}" change="onSelectProject">
-                        <items>
-                            <core:Item text="{projectsModel>}" key="{projectsModel>}"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Milestone" required="true"></Label>
-                    <Input  width="50%" value="{projectModel>/Name}"></Input>
-                    <Label text="Flag" required="true"></Label>
-                    <ComboBox change="onSelectFlag" selectedKey="{projectModel>/Flag}" width="50%">
-                        <items>
-                            <core:Item text="Internal" key="I"></core:Item>
-                            <core:Item text="External" key="E"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Owner" required="true"></Label>
-                    <ComboBox  items="{dropdownModel>/Owners}" loadItems="loadOwnersData" selectedKey="{projectModel>/Owner}" width="50%" change="onSelectOwner">
-                        <items>
-                            <core:Item text="{dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
-                        </items>
-                    </ComboBox>
-                    <Label text="Start Date" required="true" ></Label>
-                    <DatePicker value="{path:'projectModel>/StartDate',type: 'sap.ui.model.type.Date',
+
+            <VBox class="sapUiMediumMargin">
+
+                <!-- Main Form -->
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+
+                    <form:content>
+
+                        <!-- Project -->
+                        <Label
+                            text="Project"
+                            required="true" />
+
+                        <ComboBox
+                            width="80%"
+                            items="{projectsModel>/Projects}"
+                            selectedKey="{projectModel>/Project}"
+                            change="onSelectProject">
+
+                            <items>
+                                <core:Item
+                                    text="{projectsModel>}"
+                                    key="{projectsModel>}" />
+                            </items>
+
+                        </ComboBox>
+
+                        <!-- Milestone -->
+                        <Label
+                            text="Milestone"
+                            required="true" />
+
+                        <Input
+                            width="80%"
+                            value="{projectModel>/Name}" />
+
+                    </form:content>
+
+                </form:SimpleForm>
+
+                <!-- Milestone Information -->
+                <Panel
+                    headerText="Milestone Information"
+                    expandable="true"
+                    expanded="true"
+                    class="sapUiMediumMarginTop">
+
+                    <form:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false">
+
+                        <form:content>
+
+                            <!-- Flag -->
+                            <Label
+                                text="Flag"
+                                required="true" />
+
+                            <ComboBox
+                                change="onSelectFlag"
+                                selectedKey="{projectModel>/Flag}"
+                                width="80%">
+
+                                <items>
+                                    <core:Item
+                                        text="Internal"
+                                        key="I" />
+
+                                    <core:Item
+                                        text="External"
+                                        key="E" />
+                                </items>
+
+                            </ComboBox>
+
+                            <!-- Owner -->
+                            <Label
+                                text="Owner"
+                                required="true" />
+
+                            <ComboBox
+                                items="{dropdownModel>/Owners}"
+                                loadItems="loadOwnersData"
+                                selectedKey="{projectModel>/Owner}"
+                                width="80%"
+                                change="onSelectOwner">
+
+                                <items>
+                                    <core:Item
+                                        text="{dropdownModel>text}"
+                                        key="{dropdownModel>key}" />
+                                </items>
+
+                            </ComboBox>
+
+                            <!-- Start Date -->
+                            <Label
+                                text="Start Date"
+                                required="true" />
+
+                            <DatePicker
+                                value="{path:'projectModel>/StartDate',type: 'sap.ui.model.type.Date',
                                 formatOptions: {
                                     pattern: 'dd-MM-yyyy'
-                                } }" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
-                    <Label text="End Date" ></Label>
-                    <DatePicker value="{path:'projectModel>/EndDate', type: 'sap.ui.model.type.Date',
+                                } }"
+                                width="80%"
+                                displayFormat="dd/MM/yyyy"
+                                valueFormat="dd/MM/yyyy" />
+
+                            <!-- End Date -->
+                            <Label text="End Date" />
+
+                            <DatePicker
+                                value="{path:'projectModel>/EndDate', type: 'sap.ui.model.type.Date',
                                 formatOptions: {
                                     pattern: 'dd-MM-yyyy'
-                                } }" width="50%" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" ></DatePicker>
-                    <Label text="Business Owner"></Label>
-                    <ComboBox  width="50%" items="{dropdownModel>/Owners}" loadItems="loadOwnersData" selectedKey="{projectModel>/BusinessOwner}" change="onSelectBOwner"  >
-                        <items>
-                            <core:Item text="{dropdownModel>text}" key="{dropdownModel>key}"></core:Item>
-                        </items>
-                    </ComboBox>
-                </form:content>
-            </form:SimpleForm>
-           
-           </Panel>
+                                } }"
+                                width="80%"
+                                displayFormat="dd/MM/yyyy"
+                                valueFormat="dd/MM/yyyy" />
+
+                            <!-- Business Owner -->
+                            <Label text="Business Owner" />
+
+                            <ComboBox
+                                width="80%"
+                                items="{dropdownModel>/Owners}"
+                                loadItems="loadOwnersData"
+                                selectedKey="{projectModel>/BusinessOwner}"
+                                change="onSelectBOwner">
+
+                                <items>
+                                    <core:Item
+                                        text="{dropdownModel>text}"
+                                        key="{dropdownModel>key}" />
+                                </items>
+
+                            </ComboBox>
+
+                        </form:content>
+
+                    </form:SimpleForm>
+
+                </Panel>
+
+            </VBox>
+
         </content>
+
         <footer>
-            <Toolbar >
+
+            <Toolbar>
                 <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onSaveMilestone"/>
-                <Button text="Cancel" press="onCancel"/>
+
+                <Button
+                    text="Save"
+                    type="Emphasized"
+                    press="onSaveMilestone" />
+
+                <Button
+                    text="Cancel"
+                    press="onCancel" />
+
             </Toolbar>
+
         </footer>
+
     </Page>
-    
+
 </mvc:View>

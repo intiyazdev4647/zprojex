@@ -34,7 +34,7 @@
                     <Label text="Site" required="true"></Label>
                     <MultiComboBox id="idSite" items="{dropdownModel>/Sites}" busyIndicatorDelay="1000"  loadItems="loadDropDownData" width="50%">
                         <items>
-                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>key} - {dropdownModel>text}"/>
+                            <core:Item key="{dropdownModel>key}" text="{dropdownModel>text}" />
                         </items>
                     </MultiComboBox>
                     <Label text="Email" ></Label>

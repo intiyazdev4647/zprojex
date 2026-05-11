@@ -11,6 +11,36 @@ sap.ui.define(
     return Controller.extend("com.ennovi.projex.controller.CreateMilestone", {
       onInit: function() {
         //    this.getView().setModel(models.projectsModel(), "projectsModel");
+        this._comboTimer = null;
+        this.getOwnerComponent().getModel("userModel").attachRequestCompleted(this.loadDropDownData, this);
+
+        this.getView().findAggregatedObjects(true, function (oControl) {
+            return oControl.isA("sap.m.ComboBox");
+        }).forEach(function (oCombo) {
+
+            oCombo.addEventDelegate({
+
+                onmouseover: function () {
+
+                    clearTimeout(this._comboTimer);
+
+                    this._comboTimer = setTimeout(function () {
+
+                        if (!oCombo.isOpen()) {
+                            oCombo.open();
+                        }
+
+                    }, 150);
+
+                }.bind(this),
+
+                onmouseout: function () {
+                    clearTimeout(this._comboTimer);
+                }.bind(this)
+
+            });
+
+        }.bind(this));
         this.loadProjectsData();
         var oMilestoneModel = new sap.ui.model.json.JSONModel({
           visible: false
@@ -207,6 +237,21 @@ sap.ui.define(
             }
           }
         );
+      },
+      onAfterRendering: function() {
+        var oCombo = this.byId("idProjCB");
+        var timer;
+
+        oCombo.$().on("mouseenter", function() {
+          timer = setTimeout(function() {
+            oCombo.open();
+          }, 300);
+        });
+
+        oCombo.$().on("mouseleave", function() {
+          clearTimeout(timer);
+          oCombo.close();
+        });
       },
       // milestoneChange: function(oEvent) {
       //   var oInput = oEvent.getSource();
